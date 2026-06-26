@@ -183,3 +183,143 @@
 - [x] Keep `.events-panel .actions` on one line on mobile.
 - [x] Set `.sports-grid` padding to `0`.
 - [x] Verify style rules and quick UI path review.
+
+## Slice: Logic + UX Review
+
+### Acceptance Criteria
+
+- Review core parser/export logic for correctness and data-loss risks.
+- Review primary web user journey for usability, accessibility, and mobile friction.
+- Verify with available static/runtime checks before closing the review.
+
+### Checklist
+
+- [x] Inspect parser, filtering, persistence, and ICS generation logic.
+- [x] Inspect main UI structure, controls, accessibility, and mobile layout behavior.
+- [x] Run available checks and local smoke validation.
+- [x] Deliver prioritized findings with file references and concrete fixes.
+
+## Slice: Logic + UX Fixes
+
+### Spec
+
+- Goal: Resolve the highest-impact logic and usability issues from the review without widening product scope.
+- In scope:
+  - Preserve manual event selections when sport filters change.
+  - Restore full sport-group header hit area for collapse/expand.
+  - Keep keyboard focus stable across sport selection updates.
+  - Add visible keyboard focus states for key interactive controls.
+  - Keep the mobile events header/actions on one line.
+  - Avoid auto-focusing search on initial page load while keeping explicit toggle focus behavior.
+  - Add at least one executable logic test for the changed web-state behavior.
+- Out of scope:
+  - New product features or data sources.
+  - Broad visual redesign outside the reviewed friction points.
+
+### Acceptance Criteria
+
+- Changing sport filters no longer re-selects previously deselected events automatically.
+- Tapping/clicking anywhere on a sport-group header toggles collapse, except the explicit `All`/`None` actions.
+- Keyboard users retain a sensible focus target after sport selection updates.
+- Buttons and custom checkboxes show a clear visible focus state.
+- On mobile, the events panel header stays on one line and actions can scroll horizontally if needed.
+- Initial boot does not auto-focus the search field.
+- Verification includes static checks plus an executable test covering selection-preservation behavior.
+
+### Checklist
+
+- [x] Update selection-sync and sport-group interaction logic in `web/app.js`.
+- [x] Update focus, header hit-area, and mobile action layout styles in `web/styles.css`.
+- [x] Add an executable web-logic regression test.
+- [x] Run static checks and targeted verification for the changed behavior.
+
+## Slice: Dual-Source Wikipedia Fetch
+
+### Spec
+
+- Goal: Build a production-ready Wikipedia fetch pipeline that merges German and English event tables into a parser-compatible final TSV plus a richer debug TSV.
+- In scope:
+  - Add a new dual-source fetch script under `scripts/`.
+  - Fetch HTML with a user agent and parse tables from downloaded markup.
+  - Normalize DE and EN tables into a shared internal schema.
+  - Convert EN date formats into the existing final TSV date format.
+  - Deduplicate exact normalized matches while preferring `de` rows on source collisions.
+  - Write a final 4-column TSV and a debug TSV with validation and dedup metadata.
+  - Add documentation and targeted automated tests for date normalization and dedup behavior.
+- Out of scope:
+  - Fuzzy matching across translated event names.
+  - Changing the main parser or web import format.
+  - Enriching final TSV rows with winner/status data.
+
+### Acceptance Criteria
+
+- `scripts/fetch_wikipedia_merged.py` fetches both Wikipedia pages and continues when one source fails.
+- Final output remains directly compatible with `sportkalender/core.py` and `web/app.js`.
+- Debug output exposes source, raw values, validation state, and exact-duplicate flags.
+- EN monthly date ranges are converted into parseable `d.m.yyyy` or `d.m.yyyy - d.m.yyyy` strings.
+- Exact normalized duplicate rows are merged conservatively, with `de` preferred over `en`.
+- Verification includes dry-run, a real fetch, parser compatibility, and at least one executable logic test.
+
+### Checklist
+
+- [x] Add the new dual-source fetch script with normalization, validation, dedup, and output stages.
+- [x] Add targeted automated tests for EN date normalization and exact-duplicate preference.
+- [x] Document final/debug outputs and usage in `README.md`.
+- [x] Capture the Wikipedia fetch lesson in `tasks/lessons.md`.
+- [x] Verify dry-run, real fetch, and downstream ICS generation.
+
+## Slice: Web Copy Reset + Default Selection
+
+### Spec
+
+- Goal: Reset the current web UI copy to English and restore the expected default selection state on first visit without adding a language switch yet.
+- In scope:
+  - Remove remaining German UI copy in the current static web app.
+  - Reset persisted client state keys so stale browser storage from previous experiments does not override the intended default state.
+  - Keep the default boot state as "all sports selected" and "all events selected".
+  - Document how to point the web app at newly scraped TSV data.
+- Out of scope:
+  - Building a language switch or translation system.
+  - Translating event data coming from TSV files.
+  - Adding a full event-catalog selector UI.
+
+### Acceptance Criteria
+
+- All current UI labels and placeholders shipped by `web/index.html` and `web/app.js` are English.
+- A fresh visit starts with all sports and all events selected.
+- Old persisted browser state from the multilingual experiment no longer forces zero selected events on boot.
+- Verification includes static JS checks and the existing web-state test suite.
+
+### Checklist
+
+- [x] Reset current web copy to English where needed.
+- [x] Bump persisted web-state storage keys to clear stale browser state.
+- [x] Verify default event selection still starts fully selected.
+- [x] Add a short note on how to use freshly scraped TSV data with the current web app.
+- [x] Run static checks and existing web-state tests.
+
+## Slice: Selection Restore Migration
+
+### Spec
+
+- Goal: Fix the boot-time `Selected 0` regression by migrating legacy empty stored selections back to the intended default without breaking explicit future empty selections.
+- In scope:
+  - Move restore/default selection logic into a testable helper.
+  - Treat legacy stored empty selections without an explicit initialization marker as uninitialized state.
+  - Persist an explicit marker so intentionally empty future selections remain respected.
+- Out of scope:
+  - Removing state persistence entirely.
+  - Reworking the broader sports/event selection model.
+
+### Acceptance Criteria
+
+- A legacy stored state with `selectedEventIds: []` and no initialization marker restores to all events selected.
+- A newly persisted state can still intentionally restore an empty selection.
+- Verification includes targeted web-state tests and static syntax checks.
+
+### Checklist
+
+- [x] Add restore/migration helper logic for selected event ids.
+- [x] Use the helper during boot hydration and persist an initialization marker.
+- [x] Add regression tests for legacy-empty and explicit-empty restore behavior.
+- [x] Run static checks and web-state tests.
