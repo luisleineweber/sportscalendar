@@ -203,6 +203,12 @@ button:hover {
   color: var(--surface);
 }
 
+button:focus-visible,
+.release-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
 button:active {
   transform: scale(0.98);
 }
@@ -298,6 +304,17 @@ select {
   justify-content: space-between;
   flex: 1;
   gap: 8px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  min-width: 0;
+}
+
+.sport-group-heading:hover {
+  background: transparent;
+  color: inherit;
 }
 
 .sport-group-title {
@@ -308,23 +325,21 @@ select {
   letter-spacing: 0.06em;
 }
 
+.sport-group-heading-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
 .sport-group-toggle {
   border: 1px solid var(--line);
   background: var(--surface);
   width: 26px;
   height: 26px;
-  padding: 0;
   display: grid;
   place-items: center;
-}
-
-.sport-group-toggle:hover {
-  background: var(--surface);
-  color: var(--text);
-}
-
-.sport-group-toggle:active {
-  transform: none;
+  flex-shrink: 0;
 }
 
 .sport-group-toggle-icon {
@@ -407,6 +422,12 @@ select {
 
 .sport-item input[type="checkbox"]:checked {
   background: var(--text);
+}
+
+.sport-item input[type="checkbox"]:focus-visible,
+.event-row input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .sport-item input[type="checkbox"]:checked::after {
@@ -747,35 +768,44 @@ select {
   }
 
   #events-panel .panel-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
   }
 
   .events-panel .actions {
-    flex: 0 1 auto;
-    min-width: 100%;
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
     justify-content: flex-start;
-    flex-wrap: wrap;
-    overflow-x: visible;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
   }
 
   .events-panel .actions button {
-    flex: 1 1 calc(50% - 6px);
+    flex: 0 0 auto;
     white-space: nowrap;
     padding: 6px 10px;
     font-size: 11px;
   }
 
   .sport-group-header {
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .sport-group-meta {
-    width: 100%;
-    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .sport-group-heading {
+    min-width: 0;
+  }
+
+  .sport-group-title {
+    font-size: 1rem;
   }
   
   .export-dock {
