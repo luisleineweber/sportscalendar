@@ -1,10 +1,17 @@
+import {
+  applySportSelectionChange,
+  getDefaultSelectedEventIds,
+  normalizeSelectedEventIds,
+  restoreSelectedEventIds,
+} from "./app-state.mjs";
+
 const DATA_URL = "../data/sample_events_2025.tsv";
 const DATE_PATTERN = /(\d{1,2}\.\d{1,2}\.\d{4})/g;
 const FIXED_DTSTAMP = "20000101T000000Z";
 const EXPORT_FILE_NAME = "sportkalender-selection.ics";
 const IDLE_EXPORT_STATUS_TEXT = "No export yet.";
-const LOCAL_STORAGE_KEY = "sportkalender:web-state:v1";
-const SESSION_STORAGE_KEY = "sportkalender:web-state:session:v1";
+const LOCAL_STORAGE_KEY = "sportkalender:web-state:v2";
+const SESSION_STORAGE_KEY = "sportkalender:web-state:session:v2";
 const MAX_PERSISTED_STATE_BYTES = 200 * 1024;
 
 const SPORT_CATEGORIES = [
@@ -103,11 +110,11 @@ async function boot() {
     a.localeCompare(b, undefined, { sensitivity: "base" })
   );
   state.selectedSports = new Set(state.sports);
-  state.selectedEventIds = new Set(state.events.map((event) => event.id));
+  state.selectedEventIds = getDefaultSelectedEventIds(state.events);
   state.collapsedSportCategories = getDefaultCollapsedSportCategories(state.sports);
   hydrateStateFromStorage();
 
-  setEventSearchCollapsed(false);
+  setEventSearchCollapsed(false, { moveFocus: false });
   bindEvents();
   renderSports();
   applyFilters();
@@ -142,19 +149,18 @@ function bindEvents() {
   });
 
   elements.sportsAll.addEventListener("click", () => {
-    state.selectedSports = new Set(state.sports);
-    syncEventChecksToSportsSelection();
-    renderSports();
-    applyFilters();
-    persistState();
+    applySportSelectionUpdate((nextSelectedSports) => {
+      nextSelectedSports.clear();
+      for (const sport of state.sports) {
+        nextSelectedSports.add(sport);
+      }
+    });
   });
 
   elements.sportsNone.addEventListener("click", () => {
-    state.selectedSports = new Set();
-    syncEventChecksToSportsSelection();
-    renderSports();
-    applyFilters();
-    persistState();
+    applySportSelectionUpdate((nextSelectedSports) => {
+      nextSelectedSports.clear();
+    });
   });
 
   elements.sports.addEventListener("change", (event) => {
@@ -167,14 +173,20 @@ function bindEvents() {
     }
 
     if (event.target.checked) {
-      state.selectedSports.add(sport);
+      applySportSelectionUpdate(
+        (nextSelectedSports) => {
+          nextSelectedSports.add(sport);
+        },
+        getSportsFocusTargetFromElement(event.target)
+      );
     } else {
-      state.selectedSports.delete(sport);
+      applySportSelectionUpdate(
+        (nextSelectedSports) => {
+          nextSelectedSports.delete(sport);
+        },
+        getSportsFocusTargetFromElement(event.target)
+      );
     }
-    syncEventChecksToSportsSelection();
-    renderSports();
-    applyFilters();
-    persistState();
   });
 
   elements.sports.addEventListener("click", (event) => {
@@ -204,20 +216,20 @@ function bindEvents() {
     }
 
     const categorySports = getSportsForCategory(category);
-    if (action === "all") {
-      for (const sport of categorySports) {
-        state.selectedSports.add(sport);
-      }
-    } else if (action === "none") {
-      for (const sport of categorySports) {
-        state.selectedSports.delete(sport);
-      }
-    }
-
-    syncEventChecksToSportsSelection();
-    renderSports();
-    applyFilters();
-    persistState();
+    applySportSelectionUpdate(
+      (nextSelectedSports) => {
+        if (action === "all") {
+          for (const sport of categorySports) {
+            nextSelectedSports.add(sport);
+          }
+        } else if (action === "none") {
+          for (const sport of categorySports) {
+            nextSelectedSports.delete(sport);
+          }
+        }
+      },
+      getSportsFocusTargetFromElement(actionButton)
+    );
   });
 
   elements.events.addEventListener("change", (event) => {
@@ -280,17 +292,36 @@ function bindEvents() {
   });
 }
 
-function setEventSearchCollapsed(collapsed) {
+function setEventSearchCollapsed(collapsed, { moveFocus = true } = {}) {
   elements.eventsPanel.classList.toggle("search-collapsed", collapsed);
   elements.collapseEventSearch.setAttribute("aria-expanded", String(!collapsed));
   elements.expandEventSearch.setAttribute("aria-expanded", String(!collapsed));
   elements.collapseEventSearch.setAttribute("aria-label", "Collapse search");
   elements.expandEventSearch.setAttribute("aria-label", "Expand search");
+  if (!moveFocus) {
+    return;
+  }
   if (!collapsed) {
     elements.query.focus();
   } else {
     elements.expandEventSearch.focus();
   }
+}
+
+function applySportSelectionUpdate(updateSelectedSports, focusTarget = getSportsFocusTarget()) {
+  const nextState = applySportSelectionChange({
+    events: state.events,
+    selectedSports: state.selectedSports,
+    selectedEventIds: state.selectedEventIds,
+    updateSelectedSports,
+  });
+
+  state.selectedSports = nextState.selectedSports;
+  state.selectedEventIds = nextState.selectedEventIds;
+  renderSports();
+  restoreSportsFocus(focusTarget);
+  applyFilters();
+  persistState();
 }
 
 function applyFilters() {
@@ -330,8 +361,13 @@ function renderSports() {
     const header = document.createElement("header");
     header.className = "sport-group-header";
 
-    const heading = document.createElement("div");
+    const heading = document.createElement("button");
+    heading.type = "button";
     heading.className = "sport-group-heading";
+    heading.dataset.groupToggle = "collapse";
+    heading.dataset.groupName = group.category;
+    heading.setAttribute("aria-expanded", String(!isCollapsed));
+    heading.setAttribute("aria-label", isCollapsed ? `Expand ${group.category}` : `Collapse ${group.category}`);
 
     const title = document.createElement("h3");
     title.className = "sport-group-title";
@@ -345,17 +381,15 @@ function renderSports() {
     count.className = "sport-group-count";
     count.textContent = `${selectedCount}/${group.sports.length}`;
 
+    const headingMeta = document.createElement("span");
+    headingMeta.className = "sport-group-heading-meta";
+
     const actions = document.createElement("div");
     actions.className = "sport-group-actions";
 
-    const toggle = document.createElement("button");
-    toggle.type = "button";
-    toggle.className = "sport-group-toggle";
-    toggle.dataset.groupToggle = "collapse";
-    toggle.dataset.groupName = group.category;
-    toggle.setAttribute("aria-expanded", String(!isCollapsed));
-    toggle.setAttribute("aria-label", isCollapsed ? `Expand ${group.category}` : `Collapse ${group.category}`);
-    toggle.innerHTML =
+    const toggleIcon = document.createElement("span");
+    toggleIcon.className = "sport-group-toggle";
+    toggleIcon.innerHTML =
       '<svg class="sport-group-toggle-icon" aria-hidden="true" viewBox="0 0 20 20"><path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
 
     const selectAll = document.createElement("button");
@@ -372,9 +406,10 @@ function renderSports() {
     selectNone.dataset.groupName = group.category;
     selectNone.textContent = "None";
 
-    actions.append(toggle, selectAll, selectNone);
-    heading.append(title);
-    meta.append(count, actions);
+    headingMeta.append(count, toggleIcon);
+    heading.append(title, headingMeta);
+    actions.append(selectAll, selectNone);
+    meta.append(actions);
     header.append(heading, meta);
 
     const grid = document.createElement("div");
@@ -554,8 +589,6 @@ function hydrateStateFromStorage() {
     return;
   }
 
-  const eventsById = new Map(state.events.map((event) => [event.id, event]));
-
   if (Array.isArray(stored.selectedSports)) {
     state.selectedSports = new Set(stored.selectedSports.filter((sport) => state.sports.includes(sport)));
   }
@@ -567,16 +600,11 @@ function hydrateStateFromStorage() {
     );
   }
 
-  if (Array.isArray(stored.selectedEventIds)) {
-    state.selectedEventIds = new Set(
-      stored.selectedEventIds.filter((id) => {
-        const event = eventsById.get(id);
-        return Boolean(event && state.selectedSports.has(event.sport));
-      })
-    );
-  } else {
-    syncEventChecksToSportsSelection();
-  }
+  state.selectedEventIds = restoreSelectedEventIds({
+    events: state.events,
+    storedSelectedEventIds: stored.selectedEventIds,
+    selectionInitialized: stored.selectionInitialized === true,
+  });
 
   if (typeof stored.query === "string") {
     state.query = stored.query;
@@ -601,6 +629,7 @@ function hydrateStateFromStorage() {
 function persistState() {
   const payload = {
     selectedEventIds: [...state.selectedEventIds],
+    selectionInitialized: true,
     selectedSports: [...state.selectedSports],
     collapsedSportCategories: [...state.collapsedSportCategories],
     query: state.query,
@@ -923,17 +952,73 @@ function getDefaultCollapsedSportCategories(sports) {
 }
 
 function toggleSportCategory(category) {
+  const focusTarget = getSportsFocusTarget();
   if (state.collapsedSportCategories.has(category)) {
     state.collapsedSportCategories.delete(category);
   } else {
     state.collapsedSportCategories.add(category);
   }
   renderSports();
+  restoreSportsFocus(focusTarget);
   persistState();
 }
 
-function syncEventChecksToSportsSelection() {
-  state.selectedEventIds = new Set(
-    state.events.filter((event) => state.selectedSports.has(event.sport)).map((event) => event.id)
-  );
+function getSportsFocusTarget() {
+  if (!(document.activeElement instanceof Element) || !elements.sports.contains(document.activeElement)) {
+    return null;
+  }
+  return getSportsFocusTargetFromElement(document.activeElement);
+}
+
+function getSportsFocusTargetFromElement(element) {
+  if (!(element instanceof Element)) {
+    return null;
+  }
+
+  const sportInput = element.closest("input[data-sport]");
+  if (sportInput instanceof HTMLInputElement) {
+    return { type: "sport", sport: sportInput.dataset.sport };
+  }
+
+  const actionButton = element.closest("button[data-group-action]");
+  if (actionButton instanceof HTMLButtonElement) {
+    return {
+      type: "action",
+      category: actionButton.dataset.groupName,
+      action: actionButton.dataset.groupAction,
+    };
+  }
+
+  const toggleButton = element.closest("button[data-group-toggle='collapse']");
+  if (toggleButton instanceof HTMLButtonElement) {
+    return {
+      type: "toggle",
+      category: toggleButton.dataset.groupName,
+    };
+  }
+
+  return null;
+}
+
+function restoreSportsFocus(focusTarget) {
+  if (!focusTarget) {
+    return;
+  }
+
+  let nextFocus = null;
+  if (focusTarget.type === "sport" && focusTarget.sport) {
+    nextFocus = elements.sports.querySelector(`input[data-sport="${CSS.escape(focusTarget.sport)}"]`);
+  } else if (focusTarget.type === "action" && focusTarget.category && focusTarget.action) {
+    nextFocus = elements.sports.querySelector(
+      `button[data-group-action="${CSS.escape(focusTarget.action)}"][data-group-name="${CSS.escape(focusTarget.category)}"]`
+    );
+  } else if (focusTarget.type === "toggle" && focusTarget.category) {
+    nextFocus = elements.sports.querySelector(
+      `button[data-group-toggle="collapse"][data-group-name="${CSS.escape(focusTarget.category)}"]`
+    );
+  }
+
+  if (nextFocus instanceof HTMLElement) {
+    nextFocus.focus();
+  }
 }
