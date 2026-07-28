@@ -1,5 +1,17 @@
 # Lessons Learned
 
+## 2026-07-28 - Exportzeitraum braucht das Katalogjahr
+
+- What went wrong (pattern):
+  - Der früheste Eventstart kann bei Jahreswechseln im Vorjahr liegen, obwohl der Katalog das Folgejahr beschreibt.
+  - Eine reine Ableitung des Exportzeitraums aus Eventdaten hätte dadurch „From today“ für zukünftige Jahreskataloge angeboten.
+- The fix:
+  - Das Katalogjahr wird aus dem Jahres-TSV-Dateinamen abgeleitet; „From today“ ist nur für das laufende Jahr verfügbar.
+  - Die Eventfilterung schließt nur Events aus, deren `endDateExclusive` bereits vor heute liegt.
+- Prevention rule:
+  - Bei Jahreskatalogen Metadaten wie Dateiname/Jahr gegenüber einzelnen grenzüberschreitenden Events priorisieren.
+  - Randfälle mit Vorjahresstart, heutigem Start, laufendem Mehrtagesevent und Folgejahr als Tests abdecken.
+
 ## 2026-03-08 - Legacy empty selections need an explicit migration path
 
 - What went wrong (pattern):

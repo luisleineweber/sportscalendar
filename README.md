@@ -9,6 +9,7 @@ A static web MVP is available in `web/`:
 - filter a ready-made sports event catalog
 - select events
 - export deterministic `.ics` in-browser
+- choose `Full year`, or `From today` for the current-year catalog
 
 Run locally from repository root:
 
@@ -19,6 +20,8 @@ py -m http.server 8000
 Then open `http://localhost:8000/web/`.
 
 The current web app reads its event catalog from `DATA_URL` in `web/app.js`. To use newly scraped events right now, either replace `data/sample_events_2025.tsv` or point `DATA_URL` at your new TSV path.
+
+For a current-year TSV, the export dock offers `From today`; this keeps events that are active today or later and excludes events that have already ended. Future-year catalogs offer `Full year` only.
 
 ### Deploy options
 

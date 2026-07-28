@@ -1,6 +1,9 @@
 import {
   applySportSelectionChange,
+  filterEventsForExport,
   getDefaultSelectedEventIds,
+  getLocalIsoDate,
+  isFromTodayExportAvailable,
   normalizeSelectedEventIds,
   restoreSelectedEventIds,
 } from "./app-state.mjs";
@@ -9,6 +12,9 @@ const DATA_URL = "../data/sample_events_2025.tsv";
 const DATE_PATTERN = /(\d{1,2}\.\d{1,2}\.\d{4})/g;
 const FIXED_DTSTAMP = "20000101T000000Z";
 const EXPORT_FILE_NAME = "sportkalender-selection.ics";
+const EXPORT_RANGE_FULL_YEAR = "full_year";
+const EXPORT_RANGE_FROM_TODAY = "from_today";
+const DATA_YEAR = getYearFromDataUrl(DATA_URL);
 const IDLE_EXPORT_STATUS_TEXT = "No export yet.";
 const LOCAL_STORAGE_KEY = "sportkalender:web-state:v2";
 const SESSION_STORAGE_KEY = "sportkalender:web-state:session:v2";
@@ -75,6 +81,7 @@ const elements = {
   exportStatus: document.querySelector("#export-status"),
   exportEventsCount: document.querySelector("#export-events-count"),
   exportSportsCount: document.querySelector("#export-sports-count"),
+  exportRange: document.querySelector("#export-range"),
   query: document.querySelector("#query"),
   titleFormat: document.querySelector("#title-format"),
   calendarName: document.querySelector("#calendar-name"),
@@ -97,6 +104,7 @@ const state = {
   query: "",
   titleFormat: "sport_event",
   showSelectedOnly: false,
+  exportRange: EXPORT_RANGE_FULL_YEAR,
 };
 
 boot().catch((error) => {
@@ -140,6 +148,14 @@ function bindEvents() {
   elements.titleFormat.addEventListener("change", (event) => {
     state.titleFormat = event.target.value;
     renderEvents();
+    renderStats();
+    persistState();
+  });
+
+  elements.exportRange.addEventListener("change", (event) => {
+    state.exportRange = event.target.value === EXPORT_RANGE_FROM_TODAY
+      ? EXPORT_RANGE_FROM_TODAY
+      : EXPORT_RANGE_FULL_YEAR;
     renderStats();
     persistState();
   });
@@ -482,9 +498,11 @@ function renderEvents() {
 }
 
 function renderStats() {
-  const summary = getSelectedSummary();
+  updateExportRangeOptions();
+  const summary = getExportSummary();
   const selectedOnlyLabel = state.showSelectedOnly ? " | View: selected only" : "";
-  elements.statsText.textContent = `Loaded ${state.events.length} events | Showing ${state.visibleEvents.length} | Selected ${summary.eventsCount}${selectedOnlyLabel}`;
+  const selectedSummary = getSelectedSummary();
+  elements.statsText.textContent = `Loaded ${state.events.length} events | Showing ${state.visibleEvents.length} | Selected ${selectedSummary.eventsCount}${selectedOnlyLabel}`;
   elements.selectedOnlyToggle.setAttribute("aria-pressed", String(state.showSelectedOnly));
   elements.exportButton.textContent = getExportButtonLabel(summary.eventsCount);
   elements.exportEventsCount.textContent = String(summary.eventsCount);
@@ -492,9 +510,11 @@ function renderStats() {
 }
 
 async function exportIcs() {
-  const summary = getSelectedSummary();
+  const summary = getExportSummary();
   if (summary.events.length === 0) {
-    setExportStatus("Select at least one event before exporting.");
+    setExportStatus(state.exportRange === EXPORT_RANGE_FROM_TODAY
+      ? "No selected events are available from today onward."
+      : "Select at least one event before exporting.");
     return;
   }
 
@@ -542,6 +562,30 @@ function getSelectedSummary() {
     eventsCount: events.length,
     sportsCount,
   };
+}
+
+function getExportSummary() {
+  const selectedSummary = getSelectedSummary();
+  const events = filterEventsForExport(
+    selectedSummary.events,
+    state.exportRange,
+    getLocalIsoDate()
+  );
+  const sportsCount = new Set(events.map((event) => event.sport).filter(Boolean)).size;
+  return { events, eventsCount: events.length, sportsCount };
+}
+
+function updateExportRangeOptions() {
+  const todayIsoDate = getLocalIsoDate();
+  const fromTodayOption = elements.exportRange.querySelector('option[value="from_today"]');
+  const isAvailable = isFromTodayExportAvailable(state.events, todayIsoDate, DATA_YEAR);
+  fromTodayOption.hidden = !isAvailable;
+  fromTodayOption.disabled = !isAvailable;
+
+  if (!isAvailable) {
+    state.exportRange = EXPORT_RANGE_FULL_YEAR;
+  }
+  elements.exportRange.value = state.exportRange;
 }
 
 function getExportButtonLabel(eventsCount) {
@@ -622,8 +666,18 @@ function hydrateStateFromStorage() {
     state.showSelectedOnly = stored.showSelectedOnly;
   }
 
+  if (stored.exportRange === EXPORT_RANGE_FROM_TODAY || stored.exportRange === EXPORT_RANGE_FULL_YEAR) {
+    state.exportRange = stored.exportRange;
+  }
+
   elements.query.value = state.query;
   elements.titleFormat.value = state.titleFormat;
+  elements.exportRange.value = state.exportRange;
+}
+
+function getYearFromDataUrl(url) {
+  const match = url.match(/(?:^|[_-])((?:19|20)\d{2})(?=\D|$)/);
+  return match ? Number(match[1]) : null;
 }
 
 function persistState() {
@@ -636,6 +690,7 @@ function persistState() {
     titleFormat: state.titleFormat,
     calendarName: elements.calendarName.value.trim(),
     showSelectedOnly: state.showSelectedOnly,
+    exportRange: state.exportRange,
   };
 
   const serialized = JSON.stringify(payload);

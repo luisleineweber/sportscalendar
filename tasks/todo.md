@@ -323,3 +323,41 @@
 - [x] Use the helper during boot hydration and persist an initialization marker.
 - [x] Add regression tests for legacy-empty and explicit-empty restore behavior.
 - [x] Run static checks and web-state tests.
+
+## Slice: Sportevent-Listen 2026/2027
+
+### Ergebnis
+
+- Finale, parser-kompatible TSVs für 2026 und 2027 erzeugt.
+- 2026: 542 gültige Einträge aus deutscher und englischer Wikipedia-Quelle.
+- 2027: 73 gültige Einträge aus der englischen Wikipedia-Quelle; die deutsche Portal-Seite war zum Abrufzeitpunkt nicht vorhanden (HTTP 404).
+- Debug-TSVs und verfügbare Source-Exports zur Nachvollziehbarkeit erzeugt.
+
+### Checklist
+
+- [x] Quellen/Fetchedaten für 2026 und 2027 prüfen.
+- [x] Finale und Debug-TSVs für beide Jahre erzeugen.
+- [x] TSV-Inhalt, Datumsbereiche und Duplikate validieren.
+- [x] Parser, CLI/ICS und Tests verifizieren.
+- [x] Ergebnis und Datenquellen-Hinweis dokumentieren.
+
+## Slice: Export-Zeitraum beim Jahreskalender
+
+### Spec
+
+- Goal: Add an export choice for the full year or from today for the current-year catalog.
+- In scope:
+  - Add a web export-range selector.
+  - Keep the export deterministic for an explicit reference date.
+  - Preserve sport/event selection and persisted settings.
+- Out of scope:
+  - Changing the CLI contract.
+  - Adding live calendar feeds.
+
+### Acceptance Criteria
+
+- [x] Export offers `Full year` and, for the current-year catalog, `From today`.
+- [x] `From today` keeps events active today or later and excludes completed events.
+- [x] Full-year and from-today selection remain compatible with sport/event selection.
+- [x] Add regression tests for date boundaries and future-year availability.
+- [x] Update README and verify syntax, tests, and fixture export.

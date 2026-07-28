@@ -682,6 +682,27 @@ select {
   font-weight: 600;
 }
 
+.export-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.export-range select {
+  min-width: 132px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font: inherit;
+  text-transform: none;
+}
+
 .export-btn {
   background: var(--accent);
   color: white;
@@ -848,6 +869,17 @@ select {
 
   .export-stats span {
     font-size: 14px;
+  }
+
+  .export-range {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .export-range select {
+    min-width: 112px;
+    padding: 5px 6px;
+    font-size: 11px;
   }
 
   .export-btn {
