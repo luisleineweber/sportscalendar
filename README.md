@@ -19,7 +19,7 @@ py -m http.server 8000
 
 Then open `http://localhost:8000/web/`.
 
-The current web app reads its event catalog from `DATA_URL` in `web/app.js`. To use newly scraped events right now, either replace `data/sample_events_2025.tsv` or point `DATA_URL` at your new TSV path.
+The current web app reads the 2026 event catalog from `data/sportkalender_2026.tsv`. When a new yearly catalog is generated, update `DATA_URL` in `web/app.js` to point to that TSV path.
 
 For a current-year TSV, the export dock offers `From today`; this keeps events that are active today or later and excludes events that have already ended. Future-year catalogs offer `Full year` only.
 

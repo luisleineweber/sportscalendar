@@ -1,5 +1,18 @@
 # Selection + Mobile Export Improvements
 
+## Slice: Release auf den 2026-Katalog umstellen
+
+### Ergebnis
+
+- Die Web-App nutzt den vorhandenen 2026-Katalog statt des veralteten 2025-Beispieldatensatzes.
+- Ein Regressionstest prüft die Datenquelle und den Kataloginhalt.
+
+### Checklist
+
+- [x] Web-Datenquelle auf `data/sportkalender_2026.tsv` umstellen.
+- [x] Regressionstest für die aktuelle Web-Datenquelle ergänzen.
+- [x] README mit der aktiven Katalogdatei aktualisieren.
+
 ## Spec
 
 - Goal: Improve event selection flow and reduce friction exporting `.ics` on mobile (especially iPhone) without adding live update feeds.

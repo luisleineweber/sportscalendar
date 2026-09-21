@@ -8,7 +8,7 @@ import {
   restoreSelectedEventIds,
 } from "./app-state.mjs";
 
-const DATA_URL = "../data/sample_events_2025.tsv";
+const DATA_URL = "../data/sportkalender_2026.tsv";
 const DATE_PATTERN = /(\d{1,2}\.\d{1,2}\.\d{4})/g;
 const FIXED_DTSTAMP = "20000101T000000Z";
 const EXPORT_FILE_NAME = "sportkalender-selection.ics";

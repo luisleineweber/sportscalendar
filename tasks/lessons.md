@@ -1,5 +1,17 @@
 # Lessons Learned
 
+## 2026-09-21 - Web-Release darf nicht auf dem Beispielkatalog bleiben
+
+- What went wrong (pattern):
+  - Die Web-App lud weiterhin `sample_events_2025.tsv`, obwohl aktuelle Jahreskataloge bereits im Repository lagen.
+  - Der Release zeigte dadurch ausschließlich abgeschlossene 2025-Termine.
+- The fix:
+  - `DATA_URL` zeigt jetzt auf `data/sportkalender_2026.tsv`.
+  - Ein Regressionstest prüft die aktive Quelle und den 2026-Inhalt.
+- Prevention rule:
+  - Nach jeder Aktualisierung der Jahresdaten muss die Web-Datenquelle geprüft werden.
+  - Beispielkataloge dürfen nicht die aktive Release-Quelle bleiben.
+
 ## 2026-07-28 - Exportzeitraum braucht das Katalogjahr
 
 - What went wrong (pattern):
