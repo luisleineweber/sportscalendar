@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "retired_event_ids": [
+    "event-8e8bc14505481128e7b87ab26be585ae7413568a589444cdb510c92960a9c834",
+    "event-d8ccefcba3770dbab622a6a8c1825047a1266fac92f1293ab7f944ba78afe69f",
+    "event-2622332cb9e968327ff5ae4b42f9ecfe4cb7a0672ac21215f9a9fec055b05994",
+    "event-c7634c357e5b42d1e445a2627c5e2379ae46233e5036857f3e60cb02124a17e7",
+    "event-4163bc1f732a7007e0805ced92007b66708272d322f8dbe7c199811b6d9749d3",
+    "event-2885c4ed8c51cca29e5c74ca1970b56c590fdc3175c9e9576811dfc29848e089",
+    "event-f466933129246fea22e80a1cb9c658a50b7c1241dd4d5096cc4ca5473598a453",
+    "event-091f921372243285f738693d45c6d87c45785ae3c46b03ece9516eed21e751ba",
+    "event-7cf92c1c29a01c898344738a2ab2668147dd4d21740cced115983e59fd77b5cb",
+    "event-b1a0ed402326cea0db3143cfb27f06f5b2f6615681c64ee28c8f9f3255a1b08f",
+    "event-2b3da99f63b696561b9b5bbf142f43da8d6283bd51a8a0acd97e69103984a4ba",
+    "event-3d3caae6ea5041fa0cce9ab390f0f54b0862348e0d7e4c78702cd863a98b5c93",
+    "event-117024cb5bbe8fd9af3599540fd2719f9f80f86f2a591ba6cb64bf13e58a9251",
+    "event-daa8fa60aef5869803bada10cd37f3f7500ed3760ada8b7a5dd2857588917411",
+    "event-dd3e3cde66ef5efd2bd893aa73856bae7c7b1c9ecad336022b5e22e01b542dca",
+    "event-84aecd55b7e1f35793bb5f5ec4a798555786cba7a6643fcaabe968893aaf02ae",
+    "event-7266296416221fdc02b2e3fd8df45fdd6446bcb391bec103b8b1b276ab0033f6",
+    "event-ef09508fc948c02679a188d0178186ad45f97c3131dafbe02b50e7bfbf7706b5",
+    "event-6b2baa112581176ee8bf7517d1dd8ac501f702831874ba4f18d67f9addf9fdd0",
+    "event-bc18aa77687ab9aabefaf51a3d2e6651aa63f16367dd712bd8a085961b651f33",
+    "event-d7dac45dcfeac56209f8ab0282b5804428ee739e52295a22ceafb75d240ac510",
+    "event-faa1faf9c2d6fd5f96b6d4f5366e3175ad68fb6847d0cd11670cf7ebe42cc017",
+    "event-453745830be31878d80d3f35775e60794c5d688c3bc0e4a702fd6389b019924d"
+  ],
+  "events": [
+    {
+      "competition_key": "nfl",
+      "season": "2026",
+      "event_kind": "season",
+      "gender": "mixed",
+      "stage": "season_opener",
+      "title": "2026 NFL Kickoff: New England Patriots vs Seattle Seahawks",
+      "start_date": "2026-09-09",
+      "end_date": "2026-09-09",
+      "source_id": "nfl_2026_kickoff_game",
+      "source_url": "https://www.nfl.com/news/2026-nfl-schedule-release-complete-slate-of-week-1-games",
+      "date_checked_at": "2026-09-29",
+      "supersedes": [
+        "event-49ff4f0e9ed9f31eb23ac186c44318f6bb7ba48534bcaedc0c54942a763b411b"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026 on 2026-09-09 through 2026-09-09.",
+      "coverage": "national",
+      "audience_countries": [
+        "US"
+      ],
+      "audience_statement": "Domestic US league competition, reviewed against the organizer source.",
+      "source_hash": "fe3b09f1c4667366ee92962e7a6b3705606e6350f07ef0d2f480b3f23bdaa4b2",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "catalog_american_football",
+      "season": "2026",
+      "event_kind": "season",
+      "gender": "mixed",
+      "stage": "season_opener",
+      "title": "2026 NCAA Division I FBS Week 0",
+      "start_date": "2026-08-29",
+      "end_date": "2026-08-29",
+      "source_id": "ncaa_fbs_2026_week_zero",
+      "source_url": "https://www.ncaa.com/live-updates/football/fbs/college-football-week-0-recaps-highlights-scores-and-more",
+      "date_checked_at": "2026-09-29",
+      "supersedes": [
+        "event-4026bbd67707daa5b4b74cb2b104445d4251bb4e4154a24f22cc73abd8c5f4fc"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026 on 2026-08-29 through 2026-08-29.",
+      "coverage": "national",
+      "audience_countries": [
+        "US"
+      ],
+      "audience_statement": "Domestic US league competition, reviewed against the organizer source.",
+      "source_hash": "43327e4c68717780a090fb4b9462971143689c222f5d1f032176ac774927fdbb",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "bundesliga",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "season_opener",
+      "title": "2026/27 Bundesliga opener: Bayern Munich vs VfB Stuttgart",
+      "start_date": "2026-08-28",
+      "end_date": "2026-08-28",
+      "source_id": "bundesliga_2026_27_opener",
+      "source_url": "https://www.bundesliga.com/en/bundesliga/news/2026-27-season-fixture-lists-now-available-38068",
+      "date_checked_at": "2026-09-25",
+      "supersedes": [
+        "event-a6bad99a1959b34728b37358d607de97644677c65acd38eab40e21a94128a2fa"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026-27 on 2026-08-28 through 2026-08-28.",
+      "coverage": "national",
+      "audience_countries": [
+        "DE"
+      ],
+      "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+      "source_hash": "07c90b70c310494c8826379db13a547e0894621219d1f4520e79474a9cba4238",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "bundesliga",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "final_matchday",
+      "title": "2026/27 Bundesliga final matchday (Matchday 34)",
+      "start_date": "2027-05-22",
+      "end_date": "2027-05-22",
+      "source_id": "bundesliga_2026_27_final_matchday",
+      "source_url": "https://www.bundesliga.com/en/bundesliga/news/2026-27-season-fixture-lists-now-available-38068",
+      "date_checked_at": "2026-09-25",
+      "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-22 through 2027-05-22.",
+      "coverage": "national",
+      "audience_countries": [
+        "DE"
+      ],
+      "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+      "source_hash": "07c90b70c310494c8826379db13a547e0894621219d1f4520e79474a9cba4238",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "frauen_bundesliga",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "female",
+      "stage": "season_opener",
+      "title": "2026/27 Frauen-Bundesliga opener: Union Berlin vs Bayern Munich",
+      "start_date": "2026-08-21",
+      "end_date": "2026-08-21",
+      "source_id": "frauen_bundesliga_2026_27_opener",
+      "source_url": "https://www.dfb.de/news/das-ist-der-rahmenspielplan-fuer-die-saison-2026/2027",
+      "date_checked_at": "2026-09-25",
+      "supersedes": [
+        "event-fee4ee156e2925da0036e1ce7234a583d904cec8f118fc657dca323577bd58fb"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026-27 on 2026-08-21 through 2026-08-21.",
+      "coverage": "national",
+      "audience_countries": [
+        "DE"
+      ],
+      "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+      "source_hash": "5cea53762e0c77c8686b1d46df1c92b480442070dfc2b5222b03286166ac7e62",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "frauen_bundesliga",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "female",
+      "stage": "final_matchday",
+      "title": "2026/27 Google Pixel Frauen-Bundesliga final matchday",
+      "start_date": "2027-05-23",
+      "end_date": "2027-05-23",
+      "source_id": "frauen_bundesliga_2026_27_final_matchday",
+      "source_url": "https://www.dfb.de/news/das-ist-der-rahmenspielplan-fuer-die-saison-2026/2027",
+      "date_checked_at": "2026-09-25",
+      "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-23 through 2027-05-23.",
+      "coverage": "national",
+      "audience_countries": [
+        "DE"
+      ],
+      "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+      "source_hash": "5cea53762e0c77c8686b1d46df1c92b480442070dfc2b5222b03286166ac7e62",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "premier_league",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "season_opener",
+      "title": "2026/27 Premier League opener",
+      "start_date": "2026-08-21",
+      "end_date": "2026-08-21",
+      "source_id": "premier_league_2026_27",
+      "source_url": "https://www.premierleague.com/en/news/4468487",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-21.",
+      "coverage": "national",
+      "audience_countries": [
+        "GB"
+      ],
+      "audience_statement": "Domestic top-division league for GB, reviewed against the competition owner source.",
+      "source_hash": "b5e76b40e8597a1473c73a761600605554ddd18b44d95a366e8503d8625aae9c",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "premier_league",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "final_matchday",
+      "title": "2026/27 Premier League final matchday",
+      "start_date": "2027-05-30",
+      "end_date": "2027-05-30",
+      "source_id": "premier_league_2026_27",
+      "source_url": "https://www.premierleague.com/en/news/4468487",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30.",
+      "coverage": "national",
+      "audience_countries": [
+        "GB"
+      ],
+      "audience_statement": "Domestic top-division league for GB, reviewed against the competition owner source.",
+      "source_hash": "b5e76b40e8597a1473c73a761600605554ddd18b44d95a366e8503d8625aae9c",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "ligue_1",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "season_opener",
+      "title": "2026/27 Ligue 1 opener",
+      "start_date": "2026-08-21",
+      "end_date": "2026-08-21",
+      "source_id": "ligue_1_2026_27",
+      "source_url": "https://ligue1.com/fr/articles/l1_article_5284-",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-21.",
+      "coverage": "national",
+      "audience_countries": [
+        "FR"
+      ],
+      "audience_statement": "Domestic top-division league for FR, reviewed against the competition owner source.",
+      "source_hash": "16114f0a73d9eef118159935e7dea52b37fa8a208e5fe5d4ee434b2900111923",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "ligue_1",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "final_matchday",
+      "title": "2026/27 Ligue 1 final matchday",
+      "start_date": "2027-05-29",
+      "end_date": "2027-05-29",
+      "source_id": "ligue_1_2026_27",
+      "source_url": "https://ligue1.com/fr/articles/l1_article_5284-",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-29.",
+      "coverage": "national",
+      "audience_countries": [
+        "FR"
+      ],
+      "audience_statement": "Domestic top-division league for FR, reviewed against the competition owner source.",
+      "source_hash": "16114f0a73d9eef118159935e7dea52b37fa8a208e5fe5d4ee434b2900111923",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "serie_a",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "season_opener",
+      "title": "2026/27 Serie A opener",
+      "start_date": "2026-08-22",
+      "end_date": "2026-08-22",
+      "source_id": "serie_a_2026_27_opener",
+      "source_url": "https://www.legaseriea.it/serie-a/news/date-orari-e-programmazione-tv-delle-prime-cinque-giornate",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-22.",
+      "coverage": "national",
+      "audience_countries": [
+        "IT"
+      ],
+      "audience_statement": "Domestic top-division league for IT, reviewed against the competition owner source.",
+      "source_hash": "2d5945608b72aeb2eab5b08aab8e393c5f1715b3a482fe7056eb729024491c98",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "serie_a",
+      "season": "2026-27",
+      "event_kind": "season",
+      "gender": "male",
+      "stage": "final_matchday",
+      "title": "2026/27 Serie A final matchday",
+      "start_date": "2027-05-30",
+      "end_date": "2027-05-30",
+      "source_id": "serie_a_2026_27_calendar",
+      "source_url": "https://images.legaseriea.it/image/private/fl_attachment/prd/gereett2fnj7hcgsmgfi.pdf",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30.",
+      "coverage": "national",
+      "audience_countries": [
+        "IT"
+      ],
+      "audience_statement": "Domestic top-division league for IT, reviewed against the competition owner source.",
+      "source_hash": "4e59106d0b1275d4532d2892be9d1bff9cf8f591d9ae79c79dda3d72ff57ae2f",
+      "source_year": 2026
+    },
+    {
+      "competition_key": "catalog_football",
+      "season": "2026",
+      "event_kind": "tournament",
+      "gender": "mixed",
+      "stage": "football:2026 fifa world cup",
+      "title": "2026 FIFA World Cup",
+      "start_date": "2026-06-11",
+      "end_date": "2026-07-19",
+      "source_id": "fifa_world_cup_2026",
+      "source_url": "https://www.fifa.com/en/articles/article-fifa-world-cup-2026-mexico-canada-usa-new-format-tournament-football-soccer",
+      "date_checked_at": "2026-10-01",
+      "date_statement": "FIFA confirms the tournament window from 11 June through 19 July 2026.",
+      "coverage": "shared_major",
+      "audience_countries": [],
+      "host_countries": [
+        "US",
+        "CA",
+        "MX"
+      ],
+      "audience_statement": "FIFA identifies a World Cup with national teams from across its member associations.",
+      "source_hash": "08fe6488b91d12b12c3a5a46fbc037d2e2cc8da840d5241dd0068bd93ec823df",
+      "source_year": 2026
+    }
+  ]
+}

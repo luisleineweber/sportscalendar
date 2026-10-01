@@ -18,7 +18,7 @@ SOURCE_URLS = {
     "de": "https://de.wikipedia.org/wiki/Portal:Sport/Sportkalender_{year}",
     "en": "https://en.wikipedia.org/wiki/{year}_in_sports",
 }
-USER_AGENT = "SportkalenderBot/0.1 (+https://github.com/Loues000/sportscalendar)"
+USER_AGENT = "SportkalenderBot/0.1 (+https://github.com/luisleineweber/sportscalendar)"
 FINAL_OUTPUT_COLUMNS = ["Datum", "Ereignis", "Sportart", "Ort"]
 MONTH_NAME_TO_NUMBER = {
     "january": 1,
@@ -46,8 +46,12 @@ MONTH_NAME_TO_NUMBER = {
     "december": 12,
     "dec": 12,
     "januar": 1,
+    "jan": 1,
     "februar": 2,
+    "feb": 2,
+    "mrz": 3,
     "maerz": 3,
+    "m\u00e4rz": 3,
     "märz": 3,
     "april": 4,
     "mai": 5,
@@ -56,6 +60,7 @@ MONTH_NAME_TO_NUMBER = {
     "august": 8,
     "september": 9,
     "oktober": 10,
+    "okt": 10,
     "november": 11,
     "dezember": 12,
 }
@@ -147,7 +152,10 @@ def fetch_html(url: str) -> str:
 
 
 def fetch_tables(url: str, source: str) -> list[tuple[pd.DataFrame, TableContext]]:
-    html_text = fetch_html(url)
+    return parse_tables(fetch_html(url), source)
+
+
+def parse_tables(html_text: str, source: str) -> list[tuple[pd.DataFrame, TableContext]]:
     document = html.fromstring(html_text)
     tables = document.xpath("//table[contains(concat(' ', normalize-space(@class), ' '), ' wikitable ')]")
 
@@ -394,6 +402,9 @@ def build_final_candidates(dataframe: pd.DataFrame, year: int) -> pd.DataFrame:
         if normalized_date is None or sort_start is None or sort_end is None:
             final_candidates.at[index, "drop_reason"] = "unparseable_date"
             continue
+        if sort_end < sort_start:
+            final_candidates.at[index, "drop_reason"] = "reversed_date_range"
+            continue
 
         location = row["location"] if not pd.isna(row["location"]) else ""
         key = "|".join(
@@ -423,22 +434,82 @@ def normalize_date_value(
     context_month: int | None,
 ) -> tuple[str | None, str | None, str | None]:
     if source == "de":
-        return normalize_german_date(raw_date)
+        return normalize_german_date(raw_date, year=year, context_month=context_month)
     if source == "en":
         return normalize_english_date(raw_date, year=year, context_month=context_month)
     return None, None, None
 
 
-def normalize_german_date(raw_date: str) -> tuple[str | None, str | None, str | None]:
-    matches = GERMAN_DATE_TOKEN_PATTERN.findall(raw_date)
-    if not matches:
+def normalize_german_date(
+    raw_date: str,
+    *,
+    year: int,
+    context_month: int | None,
+) -> tuple[str | None, str | None, str | None]:
+    text = clean_text(raw_date)
+    if pd.isna(text):
         return None, None, None
+    normalized = DASH_PATTERN.sub(" - ", unicodedata.normalize("NFKC", str(text)))
+    normalized = WHITESPACE_PATTERN.sub(" ", normalized).strip()
+    pieces = normalized.split(" - ", 1)
+    start_piece = parse_german_date_piece(pieces[0])
+    end_piece = parse_german_date_piece(pieces[1]) if len(pieces) == 2 else start_piece
+    if start_piece is None or end_piece is None:
+        return None, None, None
+    start_date, end_date = resolve_german_range(start_piece, end_piece, year=year, context_month=context_month)
+    if start_date is None or end_date is None:
+        return None, None, None
+    return format_final_date_range(start_date, end_date), start_date.isoformat(), end_date.isoformat()
 
-    start = parse_german_date_token(matches[0])
-    end = parse_german_date_token(matches[1] if len(matches) > 1 else matches[0])
-    if start is None or end is None:
-        return None, None, None
-    return format_final_date_range(start, end), start.isoformat(), end.isoformat()
+
+def parse_german_date_piece(piece: str) -> tuple[int, int | None, int | None] | None:
+    numeric_match = GERMAN_DATE_TOKEN_PATTERN.fullmatch(piece.strip())
+    if numeric_match:
+        parsed = parse_german_date_token(numeric_match.group(1))
+        if parsed is not None:
+            return parsed.day, parsed.month, parsed.year
+    tokens = piece.strip().replace(".", " ").split()
+    if not tokens or not tokens[0].isdigit():
+        return None
+    day = int(tokens[0])
+    month = parse_month_token(tokens[1]) if len(tokens) >= 2 else None
+    explicit_year = int(tokens[2]) if len(tokens) >= 3 and tokens[2].isdigit() else None
+    if len(tokens) > 3 or (len(tokens) >= 2 and month is None):
+        return None
+    return day, month, explicit_year
+
+
+def resolve_german_range(
+    start_piece: tuple[int, int | None, int | None],
+    end_piece: tuple[int, int | None, int | None],
+    *,
+    year: int,
+    context_month: int | None,
+) -> tuple[date | None, date | None]:
+    start_day, start_month, start_year = start_piece
+    end_day, end_month, end_year = end_piece
+    if start_month is None and end_month is None:
+        if context_month is None:
+            return None, None
+        start_month = end_month = context_month
+    elif start_month is None:
+        start_month = context_month or (previous_month(end_month) if start_day > end_day else end_month)
+    elif end_month is None:
+        end_month = context_month or (next_month(start_month) if start_day > end_day else start_month)
+    if start_month is None or end_month is None:
+        return None, None
+
+    resolved_start_year = start_year or year
+    resolved_end_year = end_year or resolved_start_year
+    if start_year is None and context_month is not None and start_month > context_month:
+        resolved_start_year = year - 1
+        if end_year is None:
+            resolved_end_year = year
+    if end_year is None and end_month < start_month:
+        resolved_end_year = resolved_start_year + 1
+    start_date = safe_date(resolved_start_year, start_month, start_day)
+    end_date = safe_date(resolved_end_year, end_month, end_day)
+    return start_date, end_date
 
 
 def parse_german_date_token(value: str) -> date | None:
@@ -491,20 +562,23 @@ def normalize_english_date_text(raw_date: str) -> str:
     return normalized
 
 
-def parse_english_date_piece(piece: str) -> tuple[int, int | None] | None:
+def parse_english_date_piece(piece: str) -> tuple[int, int | None, int | None] | None:
     tokens = piece.strip().split()
     if len(tokens) == 1 and tokens[0].isdigit():
-        return int(tokens[0]), None
-    if len(tokens) == 2:
-        first, second = tokens
+        return int(tokens[0]), None, None
+    if len(tokens) in {2, 3}:
+        first, second = tokens[:2]
+        explicit_year = int(tokens[2]) if len(tokens) == 3 and tokens[2].isdigit() else None
+        if len(tokens) == 3 and explicit_year is None:
+            return None
         if first.isdigit():
             month = parse_month_token(second)
             if month is not None:
-                return int(first), month
+                return int(first), month, explicit_year
         if second.isdigit():
             month = parse_month_token(first)
             if month is not None:
-                return int(second), month
+                return int(second), month, explicit_year
     return None
 
 
@@ -516,28 +590,28 @@ def parse_month_token(token: str | None) -> int | None:
 
 
 def resolve_english_single(
-    piece: tuple[int, int | None],
+    piece: tuple[int, int | None, int | None],
     *,
     year: int,
     context_month: int | None,
 ) -> date | None:
-    day, month = piece
+    day, month, explicit_year = piece
     if month is None:
         month = context_month
     if month is None:
         return None
-    return safe_date(year, month, day)
+    return safe_date(explicit_year or year, month, day)
 
 
 def resolve_english_range(
-    start_piece: tuple[int, int | None],
-    end_piece: tuple[int, int | None],
+    start_piece: tuple[int, int | None, int | None],
+    end_piece: tuple[int, int | None, int | None],
     *,
     year: int,
     context_month: int | None,
 ) -> tuple[date | None, date | None]:
-    start_day, start_month = start_piece
-    end_day, end_month = end_piece
+    start_day, start_month, start_explicit_year = start_piece
+    end_day, end_month, end_explicit_year = end_piece
 
     if start_month is None and end_month is None:
         if context_month is None:
@@ -562,14 +636,14 @@ def resolve_english_range(
     if start_month is None or end_month is None:
         return None, None
 
-    start_year = year
-    end_year = year
-    if context_month == 1 and start_month == 12:
+    start_year = start_explicit_year or year
+    end_year = end_explicit_year or start_year
+    if start_explicit_year is None and context_month is not None and start_month > context_month:
         start_year = year - 1
-    if context_month == 12 and end_month == 1:
-        end_year = year + 1
-    if context_month is None and start_month > end_month:
-        end_year = year + 1
+        if end_explicit_year is None:
+            end_year = year
+    if end_explicit_year is None and end_month < start_month:
+        end_year = start_year + 1
 
     start_date = safe_date(start_year, start_month, start_day)
     end_date = safe_date(end_year, end_month, end_day)

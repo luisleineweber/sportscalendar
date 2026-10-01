@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20261001a" />
   </head>
   <body>
     <section class="release-note" aria-label="Release notice">
@@ -19,7 +19,7 @@
       </p>
       <a
         class="release-link"
-        href="https://github.com/Loues000/sportscalendar"
+        href="https://github.com/luisleineweber/sportscalendar"
         target="_blank"
         rel="noreferrer noopener"
       >
@@ -46,6 +46,13 @@
 
       <section class="panel controls">
         <div class="control-group">
+          <label for="catalog-year">Catalog year</label>
+          <select id="catalog-year" aria-describedby="catalog-status">
+            <option>Loading...</option>
+          </select>
+          <small id="catalog-status" class="catalog-status" role="status">Loading catalog...</small>
+        </div>
+        <div class="control-group">
           <label for="calendar-name">Calendar name</label>
           <input id="calendar-name" type="text" value="Sportkalender Selection" />
         </div>
@@ -56,6 +63,20 @@
             <option value="event_only">Event only</option>
           </select>
         </div>
+      </section>
+
+      <section class="panel country-filter-panel" aria-labelledby="country-filter-title">
+        <div class="panel-header">
+          <h2 id="country-filter-title">Countries</h2>
+          <div class="actions">
+            <button id="countries-all" type="button">All</button>
+            <button id="countries-none" type="button">None</button>
+          </div>
+        </div>
+        <p id="countries-meta" class="panel-meta">All five countries active</p>
+        <fieldset id="country-filters" class="country-filter-list" aria-describedby="countries-meta">
+          <legend class="visually-hidden">Filter events by country</legend>
+        </fieldset>
       </section>
 
       <section class="panel">
@@ -137,6 +158,6 @@
       <p id="export-status" class="export-status">No export yet.</p>
     </aside>
 
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=20261001b"></script>
   </body>
 </html>

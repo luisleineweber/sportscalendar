@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date, datetime, time, timedelta, timezone
-from hashlib import sha1
+from datetime import date, datetime, time, timezone
 from pathlib import Path
-import re
 
 from icalendar import Calendar, Event
 
-_DATE_PATTERN = re.compile(r"(\d{1,2}\.\d{1,2}\.\d{4})")
+from sportkalender.catalog_ids import custom_event_id
+from sportkalender.catalog_model import parse_catalog_date_range
+from sportkalender.catalog_registry import load_registry
+from sportkalender.catalog_tsv import read_catalog_tsv
+from sportkalender.catalog_validation import validate_events
+
 _SPORT_PREFIX_EXCEPTIONS = {"diverse", "multisportveranstaltung", "marathon"}
 
 
@@ -19,6 +22,7 @@ class SportEvent:
     title: str
     sport: str
     location: str
+    event_id: str = ""
 
     @property
     def summary(self) -> str:
@@ -30,18 +34,10 @@ class SportEvent:
 
 
 def parse_date_range(raw_value: str) -> tuple[date, date] | None:
-    normalized = raw_value.replace("\xa0", " ").strip()
-    matches = _DATE_PATTERN.findall(normalized)
-    if not matches:
+    try:
+        return parse_catalog_date_range(raw_value)
+    except (TypeError, ValueError):
         return None
-
-    start = datetime.strptime(matches[0], "%d.%m.%Y").date()
-    if len(matches) >= 2:
-        end = datetime.strptime(matches[1], "%d.%m.%Y").date()
-    else:
-        end = start
-
-    return start, end + timedelta(days=1)
 
 
 def load_events_from_tsv(
@@ -51,54 +47,43 @@ def load_events_from_tsv(
     if include_sports:
         normalized_filters = {item.strip().casefold() for item in include_sports if item.strip()}
 
+    read_result = read_catalog_tsv(input_path)
+    if not read_result.valid:
+        messages = "; ".join(issue.message for issue in read_result.issues[:3])
+        raise ValueError(f"could not read catalog {input_path}: {messages}")
+    registry = None
+    if read_result.is_published:
+        data_dir = Path(__file__).resolve().parents[1] / "data"
+        registry = load_registry(data_dir / "sports.json", data_dir / "competitions.json")
+    validation = validate_events(
+        read_result.events,
+        registry=registry,
+        require_published=read_result.is_published,
+    )
+    if not validation.valid:
+        messages = "; ".join(issue.message for issue in validation.issues[:3])
+        raise ValueError(f"catalog {input_path} failed validation: {messages}")
+
     events: list[SportEvent] = []
-    seen: set[tuple[date, date, str, str, str]] = set()
-
-    with input_path.open("r", encoding="utf-8-sig") as source:
-        for raw_line in source:
-            line = raw_line.strip()
-            if not line or line.startswith("###"):
-                continue
-
-            columns = [col.strip() for col in raw_line.split("\t")]
-            if len(columns) < 3:
-                continue
-            if columns[0].casefold() == "datum":
-                continue
-
-            parsed_dates = parse_date_range(columns[0])
-            if not parsed_dates:
-                continue
-            start_date, end_date_exclusive = parsed_dates
-
-            title = columns[1]
-            sport = columns[2]
-            location = " ".join(part for part in columns[3:] if part)
-
-            if normalized_filters and sport.casefold() not in normalized_filters:
-                continue
-
-            key = (start_date, end_date_exclusive, title, sport, location)
-            if key in seen:
-                continue
-            seen.add(key)
-
-            events.append(
-                SportEvent(
-                    start_date=start_date,
-                    end_date_exclusive=end_date_exclusive,
-                    title=title,
-                    sport=sport,
-                    location=location,
-                )
+    for catalog_event in read_result.events:
+        if normalized_filters and catalog_event.sport.casefold() not in normalized_filters:
+            continue
+        events.append(
+            SportEvent(
+                start_date=catalog_event.start_date,
+                end_date_exclusive=catalog_event.end_date_exclusive,
+                title=catalog_event.title,
+                sport=catalog_event.sport,
+                location=catalog_event.location,
+                event_id=catalog_event.event_id,
             )
+        )
 
     events.sort(
         key=lambda event: (
             event.start_date,
             event.end_date_exclusive,
-            event.summary.casefold(),
-            event.location.casefold(),
+            event.event_id,
         )
     )
     return events
@@ -117,7 +102,7 @@ def write_ics(events: list[SportEvent], output_path: Path) -> None:
 
     dtstamp = datetime.combine(date(2000, 1, 1), time.min, timezone.utc)
 
-    for event in events:
+    for event in sorted(events, key=lambda item: (item.start_date, item.end_date_exclusive, item.event_id)):
         ics_event = Event()
         ics_event.add("summary", event.summary)
         ics_event.add("dtstart", event.start_date)
@@ -125,16 +110,14 @@ def write_ics(events: list[SportEvent], output_path: Path) -> None:
         if event.location:
             ics_event.add("location", event.location)
 
-        uid_source = "|".join(
-            (
-                event.start_date.isoformat(),
-                event.end_date_exclusive.isoformat(),
-                event.title,
-                event.sport,
-                event.location,
-            )
+        event_id = event.event_id or custom_event_id(
+            start_date=event.start_date.isoformat(),
+            end_date_exclusive=event.end_date_exclusive.isoformat(),
+            title=event.title,
+            sport=event.sport,
+            location=event.location,
         )
-        uid = f"{sha1(uid_source.encode('utf-8')).hexdigest()}@sportkalender"
+        uid = f"{event_id}@sportkalender"
         ics_event.add("uid", uid)
         ics_event.add("dtstamp", dtstamp)
 

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "events": {
+    "event-8de9faeda03f1d880a8e59ef129f2f314cbcc8dcefb33c5ed737c5a933df01c9": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    },
+    "event-7b64a914602fa23fb6ff858ee83f04f0c072837163b778b9f54c76615d7e7089": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    },
+    "event-fecfdee8fca8b0ebb12290bd87d8b95018662e717140fe9d5e39fb51902caf86": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    },
+    "event-8af4ab0d326732366c518fde4b943aa8d03f5c31982116c585a4fc2b86120b3b": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    },
+    "event-c2147491cf8548332db23c1cd91f7401f50fb9a27257e755e741a13e64e4e249": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    },
+    "event-7b8fd23b80fc45e86503aafead28a6eb84bbea12b56e07c8c0c193ac2468ecfb": {
+      "event_kind": "tournament",
+      "reason": "A bounded tournament is not a full domestic league season. Keep its full dates; audience scope still needs official review."
+    }
+  }
+}

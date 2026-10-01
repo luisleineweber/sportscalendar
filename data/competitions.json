@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "competitions": [
+    {
+      "key": "nfl",
+      "display_name": "NFL",
+      "sport_key": "american_football",
+      "kind": "league",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": [
+        "national football league"
+      ],
+      "closing_stage": "playoff_final"
+    },
+    {
+      "key": "nba",
+      "display_name": "NBA",
+      "sport_key": "basketball",
+      "kind": "league",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": [
+        "national basketball association"
+      ],
+      "closing_stage": "playoff_final"
+    },
+    {
+      "key": "wnba",
+      "display_name": "WNBA",
+      "sport_key": "basketball",
+      "kind": "league",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": [
+        "women's national basketball association"
+      ],
+      "closing_stage": "playoff_final"
+    },
+    {
+      "key": "uefa_champions_league",
+      "display_name": "UEFA Champions League",
+      "sport_key": "football",
+      "kind": "competition",
+      "primary_display_group": "International",
+      "audience_countries": [
+        "DE",
+        "US",
+        "GB",
+        "FR",
+        "IT"
+      ],
+      "aliases": [
+        "uefa champions league"
+      ]
+    },
+    {
+      "key": "bundesliga",
+      "display_name": "Bundesliga",
+      "sport_key": "football",
+      "kind": "league",
+      "primary_display_group": "DE",
+      "audience_countries": [
+        "DE"
+      ],
+      "aliases": [
+        "bundesliga"
+      ],
+      "closing_stage": "final_matchday"
+    },
+    {
+      "key": "frauen_bundesliga",
+      "display_name": "Google Pixel Frauen-Bundesliga",
+      "sport_key": "football",
+      "kind": "league",
+      "primary_display_group": "DE",
+      "audience_countries": [
+        "DE"
+      ],
+      "aliases": [
+        "frauen-bundesliga",
+        "google pixel frauen-bundesliga"
+      ],
+      "closing_stage": "final_matchday"
+    },
+    {
+      "key": "dfb_pokal",
+      "display_name": "DFB-Pokal",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "DE",
+      "audience_countries": [
+        "DE"
+      ],
+      "aliases": [
+        "dfb pokal"
+      ]
+    },
+    {
+      "key": "premier_league",
+      "display_name": "Premier League",
+      "sport_key": "football",
+      "kind": "league",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": [
+        "premier league"
+      ],
+      "closing_stage": "final_matchday"
+    },
+    {
+      "key": "ligue_1",
+      "display_name": "Ligue 1",
+      "sport_key": "football",
+      "kind": "league",
+      "primary_display_group": "FR",
+      "audience_countries": [
+        "FR"
+      ],
+      "aliases": [
+        "ligue 1"
+      ],
+      "closing_stage": "final_matchday"
+    },
+    {
+      "key": "serie_a",
+      "display_name": "Serie A",
+      "sport_key": "football",
+      "kind": "league",
+      "primary_display_group": "IT",
+      "audience_countries": [
+        "IT"
+      ],
+      "aliases": [
+        "serie a"
+      ],
+      "closing_stage": "final_matchday"
+    },
+    {
+      "key": "us_open_cup",
+      "display_name": "U.S. Open Cup",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": [
+        "lamar hunt u.s. open cup"
+      ]
+    },
+    {
+      "key": "coupe_de_france",
+      "display_name": "Coupe de France",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "FR",
+      "audience_countries": [
+        "FR"
+      ],
+      "aliases": [
+        "coupe de france"
+      ]
+    },
+    {
+      "key": "coppa_italia",
+      "display_name": "Coppa Italia",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "IT",
+      "audience_countries": [
+        "IT"
+      ],
+      "aliases": [
+        "coppa italia"
+      ]
+    },
+    {
+      "key": "fa_cup",
+      "display_name": "FA Cup",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": [
+        "the fa cup"
+      ]
+    },
+    {
+      "key": "scottish_cup",
+      "display_name": "Scottish Cup",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": [
+        "scottish cup"
+      ]
+    },
+    {
+      "key": "welsh_cup",
+      "display_name": "Welsh Cup",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": [
+        "welsh cup"
+      ]
+    },
+    {
+      "key": "irish_cup",
+      "display_name": "Irish Cup",
+      "sport_key": "football",
+      "kind": "cup",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": [
+        "irish cup"
+      ]
+    },
+    {
+      "key": "mlb",
+      "display_name": "MLB",
+      "sport_key": "baseball",
+      "kind": "league",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": [
+        "major league baseball"
+      ],
+      "closing_stage": "playoff_final"
+    },
+    {
+      "key": "german_athletics_championships",
+      "display_name": "German Athletics Championships",
+      "sport_key": "athletics",
+      "kind": "championship",
+      "primary_display_group": "DE",
+      "audience_countries": [
+        "DE"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "german_swimming_championships",
+      "display_name": "German Swimming Championships",
+      "sport_key": "swimming",
+      "kind": "championship",
+      "primary_display_group": "DE",
+      "audience_countries": [
+        "DE"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "usa_cycling_championships",
+      "display_name": "USA Cycling National Championships",
+      "sport_key": "cycling",
+      "kind": "championship",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "usa_swimming_championships",
+      "display_name": "USA Swimming National Championships",
+      "sport_key": "swimming",
+      "kind": "championship",
+      "primary_display_group": "US",
+      "audience_countries": [
+        "US"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "uk_athletics_championships",
+      "display_name": "UK Athletics Championships",
+      "sport_key": "athletics",
+      "kind": "championship",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "aquatics_gb_championships",
+      "display_name": "Aquatics GB Championships",
+      "sport_key": "swimming",
+      "kind": "championship",
+      "primary_display_group": "GB",
+      "audience_countries": [
+        "GB"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "french_athletics_championships",
+      "display_name": "French Athletics Championships",
+      "sport_key": "athletics",
+      "kind": "championship",
+      "primary_display_group": "FR",
+      "audience_countries": [
+        "FR"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "french_swimming_championships",
+      "display_name": "French Swimming Championships",
+      "sport_key": "swimming",
+      "kind": "championship",
+      "primary_display_group": "FR",
+      "audience_countries": [
+        "FR"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "italian_athletics_championships",
+      "display_name": "Italian Athletics Championships",
+      "sport_key": "athletics",
+      "kind": "championship",
+      "primary_display_group": "IT",
+      "audience_countries": [
+        "IT"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "italian_swimming_championships",
+      "display_name": "Italian Swimming Championships",
+      "sport_key": "swimming",
+      "kind": "championship",
+      "primary_display_group": "IT",
+      "audience_countries": [
+        "IT"
+      ],
+      "aliases": []
+    },
+    {
+      "key": "catalog_football",
+      "display_name": "Other Football events",
+      "sport_key": "football",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_american_football",
+      "display_name": "Other American Football events",
+      "sport_key": "american_football",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_basketball",
+      "display_name": "Other Basketball events",
+      "sport_key": "basketball",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_tennis",
+      "display_name": "Other Tennis events",
+      "sport_key": "tennis",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_ice_hockey",
+      "display_name": "Other Ice Hockey events",
+      "sport_key": "ice_hockey",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_cycling",
+      "display_name": "Other Cycling events",
+      "sport_key": "cycling",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_athletics",
+      "display_name": "Other Athletics events",
+      "sport_key": "athletics",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_swimming",
+      "display_name": "Other Swimming events",
+      "sport_key": "swimming",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_table_tennis",
+      "display_name": "Other Table Tennis events",
+      "sport_key": "table_tennis",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_volleyball",
+      "display_name": "Other Volleyball events",
+      "sport_key": "volleyball",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    },
+    {
+      "key": "catalog_other",
+      "display_name": "Other catalog events",
+      "sport_key": "other",
+      "kind": "competition",
+      "primary_display_group": "unassigned",
+      "audience_countries": [],
+      "aliases": []
+    }
+  ]
+}

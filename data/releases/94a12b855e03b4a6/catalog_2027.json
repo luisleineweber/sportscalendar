@@ -1,0 +1,834 @@
+{
+  "schema_version": 1,
+  "catalog_id": "2027",
+  "year": 2027,
+  "revision": "94a12b855e03b4a6",
+  "summary": {
+    "stored_rows": 75,
+    "date_valid_rows": 75,
+    "unique_event_ids": 75,
+    "by_sport": {
+      "american_football": 4,
+      "baseball": 3,
+      "basketball": 11,
+      "curling": 1,
+      "cycling": 1,
+      "football": 10,
+      "golf": 9,
+      "handball": 1,
+      "horse_racing": 4,
+      "ice_hockey": 6,
+      "marathon": 7,
+      "other": 6,
+      "rugby": 2,
+      "softball": 1,
+      "tennis": 9
+    },
+    "by_competition": {
+      "bundesliga": 1,
+      "catalog_american_football": 3,
+      "catalog_baseball": 2,
+      "catalog_basketball": 9,
+      "catalog_curling": 1,
+      "catalog_cycling": 1,
+      "catalog_football": 4,
+      "catalog_golf": 9,
+      "catalog_handball": 1,
+      "catalog_horse_racing": 4,
+      "catalog_ice_hockey": 6,
+      "catalog_marathon": 7,
+      "catalog_other": 6,
+      "catalog_rugby": 2,
+      "catalog_softball": 1,
+      "catalog_tennis": 9,
+      "frauen_bundesliga": 1,
+      "ligue_1": 1,
+      "mlb": 1,
+      "nba": 2,
+      "nfl": 1,
+      "premier_league": 1,
+      "serie_a": 1,
+      "uefa_champions_league": 1
+    },
+    "by_event_kind": {
+      "cup_final": 4,
+      "national_championship": 11,
+      "season": 6,
+      "tournament": 54
+    },
+    "by_audience_country": {
+      "DE": 2,
+      "FR": 1,
+      "GB": 1,
+      "IT": 1
+    },
+    "location_rows": 0,
+    "not_tagged_rows": 70,
+    "unrecognized_sport_labels": {
+      "aquatics": 1,
+      "auto racing": 1,
+      "canadian football": 1,
+      "multi-sport": 2,
+      "sailing": 1
+    }
+  },
+  "event_ids": [
+    "event-02ffae4daa7effc6474f21ed1b4a339364b96ee53d299cfad80d1afdeb60c956",
+    "event-0fb5a25e8ec2f8d69bb93ddc6292f3b3ba3228acb52263eb6642844368505e67",
+    "event-109e7d5b672917fc87d13e16e12a146c7b13cd9f8022fbf3e3cc2bc6fe472e88",
+    "event-188109a4f75361969039946b640bb181576d60bac04a76a46048355a2bc84c01",
+    "event-194ec1136606937f19ffc25423878ae759e93885460795e1984c8c2f399a740f",
+    "event-1a6604aba6173e7bd0d4767b633ee225f2616389f7ebb0e526ca4fd470be0b35",
+    "event-1d325d2e326af5719d1da3bd1ef68f3f41c007bb33f4c33639e3b66f17de14a7",
+    "event-278c0c10c0da893b5ca7b8202289612a3f6d3bf2a0a0d8e78f2f9f669ca95b07",
+    "event-2cb917c003d10f9fda304dffeefb0de17de2e40a830c7d22c3845e58ce24d026",
+    "event-3712ad24859d4adf11abd82950ee49685c39a6b43127fad60c12b9a35ef2fb9e",
+    "event-39ce09b730cfe32f31bfcfff993e9edfe900d4035e16b4c2f3b7848f489ebe9a",
+    "event-3a895898ddeefd14a2930186d8e0863eed6485197d0fcec99b09838c3c8a7b79",
+    "event-44b7ebd16f9d656cb248ef3ac2a5c42c2cf25b6f8c54a9949effd16e5823a309",
+    "event-460f6ef82f978da28bfc506bd7399956fe4bf2cd94164ce3e64cef9116f068a0",
+    "event-470ef21149cc4eea47302d38670d2af317cd86d6b1abc4f508e92c1f9e2ce907",
+    "event-47fca17492c1eedbe5f1341d1170168bef9f3d8e88d903c8ba3f3c8e70974d77",
+    "event-4a158f8f2d14b0d0e7c0c8f4dd61e6470339c230f7e3554f5131f674039875f2",
+    "event-4a44b96f828b8fee6a9d39874ef5f4222b9a46431eeb4447bbb50589b6e09046",
+    "event-4b503af0d69375c2232f3a72cef100a12aaa591da7d1d62110c73dc211781f91",
+    "event-50e96238dfb1c61100508534c8bdbe23129050f41debdf1c5d963082e0becd82",
+    "event-51cc0f1c9707408e9c1a80fd9ed71f51a0ea2b00402c5954599ca5bb75d410dd",
+    "event-5b67d76e56233b240c8691c018e08638412105a333e7af6581d315cff3305943",
+    "event-5be38493bacd7696cc16c9f730847d89705711b2c2ac090c53169678e7b69eae",
+    "event-5d6f2fc3c1757d0091d0a938d58ebaec4e1c73b4960536d9575322be25caf3be",
+    "event-5e4d8382d6db81877eba8b7cdd3d64e3cd7a767f1b1abab10dc7e6992698a079",
+    "event-631739a946cae16e4332484f79b70037947a8909a6c50882e312a4bcc433315e",
+    "event-633e722f35d2b30d9ab9b085341839c958c139989d64d0350160f1ed7449c9b7",
+    "event-65e3a54d11f58665dcc298972f1fab9a8484ecd904b8a8789e80baeb6743a150",
+    "event-6668d7bcd66fd8dddf7d5d5b8f650f7f3dc8ec985bfdfbaeeb4d86161c06ddaf",
+    "event-6b6f877b4e9b7d9044a1057ad51b68d57bef6847af48f9d4ee552f0120598ed6",
+    "event-6d227a9ea6b7058892921d8bc6c76be3a2a889d724f49737c8a425c1809ac9d7",
+    "event-6ec5b38fc247f288b9808042989885282c81c9691fa79e348d7009713fd7a3cc",
+    "event-6f932d4a493def89e4cf8ea65f0a7e7da727a5bef175643fa2191b368d228f21",
+    "event-71a74fd6653b308a843981272ba6ef9a3750f579379d37f279e6ae41be39a3b8",
+    "event-7497ffefc0a53d9fd508b35eab0603a053a8da4982f79e5042a2b12766955802",
+    "event-74da506b3ec871ace5984720f8e954ad33b8662e2fc92cd2245c895894649450",
+    "event-7a094603cf75fc0c254602a73290774c947b3f2b54c00a126f58bea5f7ca3bb1",
+    "event-8049f458d402ef9afeaeb81bcf29f124b9117dd029719ee78359c278810c17bb",
+    "event-86ddd85d2f367d687f39050b739178dda7645424c940d269a3b4dd4a6c71de6d",
+    "event-87f3a876644a0872823fc07629834c5fddce39248f91019f9dc1a93f619ba56a",
+    "event-88aaa3471e6cb796d3fb02fca7b8217e13ec0140e84454942cd953b9d2674f77",
+    "event-89ba86f9e0d6e8ef8aa5d5535a661b90279fb8f0ac8b683e26c42723db1d7e1b",
+    "event-89c81d7fe92d48ebb9ca5a7bb0f12dc0be46583f86e637dcd493059c2a62c14f",
+    "event-8e9d92db2a6bc1b320ee5997d5431b6f2e17c0abd6f6563439278d8237c277a6",
+    "event-8f553dc277795fbe76cb7e3e8db5bdfa88143e56612f270ecd5205d147221dcf",
+    "event-91e6ddec54223d5dc8b1b63f469470537e756fff264539aae00b1820a0b40527",
+    "event-96a78dae3d532837a84ad9915ff4b8abdea20032862944e2a3710084bd092ffc",
+    "event-9d2127e33f3a59db73444a55c176adf3f16d88a58a060f060ff0baafeec2466e",
+    "event-a26f6730e0e8dd50174b0ee17e5b70d201f6d260122fa1945aee66d37fd5a5eb",
+    "event-a2d0aea87445b8b6e985f9ce22e3a8d07b2daa6a67a94ad592d5a4b3356c8db3",
+    "event-a3e6a13d6d47540dba0691b8378921a8c2c95355fcc4f7ee5cc29147042263d3",
+    "event-a8a9e3fa77f8dec0293ad7925b57868da57cf7a4af1ad7f32b66e0335527ab3c",
+    "event-afa9fd51e5aac834a2381c42161c01d3bc7ca7d908f879de5645a15710fc32a0",
+    "event-b28327867f7e0ec3ef86db5ac233e933884bfaf9eff9687cae47748ec11c1185",
+    "event-b60827f0953c7536ac93528a4f68b819204f9a3d441dd0048f3e4c423e586b79",
+    "event-bb44f0e2d51c8664d73211b75362819c75f37c2e5acf1cb8b14ddb85b8fa5ce8",
+    "event-bbfeead43d1616a1443dc3632244deb0304440f77a5134db1b18f82b5002879b",
+    "event-bf38a377b9680981c1531e369e50148217052a2e305e8509aab51d54e85f2b28",
+    "event-c767f34fb67250b543ebbc29fedd1a162a78dc08a779aeb54886ff238fd6f720",
+    "event-c84c65e7799695f4f76149c9019ecc5c3c6d4b3a18e5dacabc014fd4cb08abb0",
+    "event-d74a34d60fc37f816bb354382fb2f24c63e015d850b76b8ab4776bb1afe151d0",
+    "event-d9f3a16d4a44dfdd12c2754e6e0c57b90b0334e2212d39d17c62970263547c1e",
+    "event-da1b204c0814d0ce90e6458f2d0c3eee4f57a6c455dfb1b86c743e0e22e6b432",
+    "event-e45becabc4092913420801a2ce29cde30ccc87403960c52f864f30543aee9440",
+    "event-e70128b0aace78f57f9da6cb30abba1c7b6ba047f3ef2c3b3e062885d13c45d3",
+    "event-ed3d4e15e3dc0f0d8d29971219fdcc40f4016fab8469fe51fe722064cf468231",
+    "event-f0d4a68fec8a840e3d37758f86df552d5e251491b189ed190e3503d6a190fefa",
+    "event-f1067f2d95ffa1b8e7068f2e717f58a6f74b43dd3b5862ce27d17182d34b7fcf",
+    "event-f21c5b2abc6bf5a3dfa18d55e5e69ab95fdfdbb6831bdcd2a21a2901c5fbe709",
+    "event-f4e7622f7ff265a86a412a671fe8703b1f32828c2f2b65edda6869c8cbfd76a4",
+    "event-f4fbcc9d78b88daf11e9faa68f197af47e44b94cdd736d37ef6222aed2113364",
+    "event-f6369b313e2922bad46a4fd94541416325eec27ad40c58821bd4ab7526569f02",
+    "event-f95c12b5bdea2193a220da40a85c5d5dcff9659bfe6dcfca8423d364650a9707",
+    "event-fc86040da8b883618847dd41f215ddd592b23efddb5f4056dac82d29b2e943b6",
+    "event-fdff9a4b1ac5bfe3b1318f91ac7033482edf0e52f11e0a3bb96cb6156eef968a"
+  ],
+  "event_evidence": {
+    "event-d74a34d60fc37f816bb354382fb2f24c63e015d850b76b8ab4776bb1afe151d0": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 2,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-6d227a9ea6b7058892921d8bc6c76be3a2a889d724f49737c8a425c1809ac9d7": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 3,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f1067f2d95ffa1b8e7068f2e717f58a6f74b43dd3b5862ce27d17182d34b7fcf": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 4,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-7a094603cf75fc0c254602a73290774c947b3f2b54c00a126f58bea5f7ca3bb1": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 5,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-4a44b96f828b8fee6a9d39874ef5f4222b9a46431eeb4447bbb50589b6e09046": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 6,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-87f3a876644a0872823fc07629834c5fddce39248f91019f9dc1a93f619ba56a": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 7,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-96a78dae3d532837a84ad9915ff4b8abdea20032862944e2a3710084bd092ffc": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 8,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-fdff9a4b1ac5bfe3b1318f91ac7033482edf0e52f11e0a3bb96cb6156eef968a": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 9,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-89c81d7fe92d48ebb9ca5a7bb0f12dc0be46583f86e637dcd493059c2a62c14f": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 10,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-d9f3a16d4a44dfdd12c2754e6e0c57b90b0334e2212d39d17c62970263547c1e": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 11,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-5b67d76e56233b240c8691c018e08638412105a333e7af6581d315cff3305943": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 12,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-88aaa3471e6cb796d3fb02fca7b8217e13ec0140e84454942cd953b9d2674f77": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 13,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-6668d7bcd66fd8dddf7d5d5b8f650f7f3dc8ec985bfdfbaeeb4d86161c06ddaf": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 14,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f6369b313e2922bad46a4fd94541416325eec27ad40c58821bd4ab7526569f02": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 15,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-8f553dc277795fbe76cb7e3e8db5bdfa88143e56612f270ecd5205d147221dcf": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 16,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-470ef21149cc4eea47302d38670d2af317cd86d6b1abc4f508e92c1f9e2ce907": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 17,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-188109a4f75361969039946b640bb181576d60bac04a76a46048355a2bc84c01": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 18,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-4a158f8f2d14b0d0e7c0c8f4dd61e6470339c230f7e3554f5131f674039875f2": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 19,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-c767f34fb67250b543ebbc29fedd1a162a78dc08a779aeb54886ff238fd6f720": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 21,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-194ec1136606937f19ffc25423878ae759e93885460795e1984c8c2f399a740f": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 22,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-2cb917c003d10f9fda304dffeefb0de17de2e40a830c7d22c3845e58ce24d026": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 23,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-a3e6a13d6d47540dba0691b8378921a8c2c95355fcc4f7ee5cc29147042263d3": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 24,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-39ce09b730cfe32f31bfcfff993e9edfe900d4035e16b4c2f3b7848f489ebe9a": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 25,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-a26f6730e0e8dd50174b0ee17e5b70d201f6d260122fa1945aee66d37fd5a5eb": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 26,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f0d4a68fec8a840e3d37758f86df552d5e251491b189ed190e3503d6a190fefa": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 27,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-ed3d4e15e3dc0f0d8d29971219fdcc40f4016fab8469fe51fe722064cf468231": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 28,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-a8a9e3fa77f8dec0293ad7925b57868da57cf7a4af1ad7f32b66e0335527ab3c": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 29,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-91e6ddec54223d5dc8b1b63f469470537e756fff264539aae00b1820a0b40527": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 30,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-5d6f2fc3c1757d0091d0a938d58ebaec4e1c73b4960536d9575322be25caf3be": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 31,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-6f932d4a493def89e4cf8ea65f0a7e7da727a5bef175643fa2191b368d228f21": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 32,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-278c0c10c0da893b5ca7b8202289612a3f6d3bf2a0a0d8e78f2f9f669ca95b07": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 33,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-47fca17492c1eedbe5f1341d1170168bef9f3d8e88d903c8ba3f3c8e70974d77": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 34,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-8e9d92db2a6bc1b320ee5997d5431b6f2e17c0abd6f6563439278d8237c277a6": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 35,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-86ddd85d2f367d687f39050b739178dda7645424c940d269a3b4dd4a6c71de6d": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 36,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-6ec5b38fc247f288b9808042989885282c81c9691fa79e348d7009713fd7a3cc": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 37,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-44b7ebd16f9d656cb248ef3ac2a5c42c2cf25b6f8c54a9949effd16e5823a309": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 38,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-c84c65e7799695f4f76149c9019ecc5c3c6d4b3a18e5dacabc014fd4cb08abb0": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 39,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-6b6f877b4e9b7d9044a1057ad51b68d57bef6847af48f9d4ee552f0120598ed6": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 40,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-51cc0f1c9707408e9c1a80fd9ed71f51a0ea2b00402c5954599ca5bb75d410dd": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 41,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-1a6604aba6173e7bd0d4767b633ee225f2616389f7ebb0e526ca4fd470be0b35": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 42,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-a2d0aea87445b8b6e985f9ce22e3a8d07b2daa6a67a94ad592d5a4b3356c8db3": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 43,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-65e3a54d11f58665dcc298972f1fab9a8484ecd904b8a8789e80baeb6743a150": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 44,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f4fbcc9d78b88daf11e9faa68f197af47e44b94cdd736d37ef6222aed2113364": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 45,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-0fb5a25e8ec2f8d69bb93ddc6292f3b3ba3228acb52263eb6642844368505e67": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 46,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-89ba86f9e0d6e8ef8aa5d5535a661b90279fb8f0ac8b683e26c42723db1d7e1b": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 47,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f4e7622f7ff265a86a412a671fe8703b1f32828c2f2b65edda6869c8cbfd76a4": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 48,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-02ffae4daa7effc6474f21ed1b4a339364b96ee53d299cfad80d1afdeb60c956": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 49,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-8049f458d402ef9afeaeb81bcf29f124b9117dd029719ee78359c278810c17bb": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 50,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-4b503af0d69375c2232f3a72cef100a12aaa591da7d1d62110c73dc211781f91": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 51,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-460f6ef82f978da28bfc506bd7399956fe4bf2cd94164ce3e64cef9116f068a0": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 52,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-da1b204c0814d0ce90e6458f2d0c3eee4f57a6c455dfb1b86c743e0e22e6b432": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 53,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-71a74fd6653b308a843981272ba6ef9a3750f579379d37f279e6ae41be39a3b8": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 54,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-633e722f35d2b30d9ab9b085341839c958c139989d64d0350160f1ed7449c9b7": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 55,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-1d325d2e326af5719d1da3bd1ef68f3f41c007bb33f4c33639e3b66f17de14a7": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 56,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-fc86040da8b883618847dd41f215ddd592b23efddb5f4056dac82d29b2e943b6": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 57,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-9d2127e33f3a59db73444a55c176adf3f16d88a58a060f060ff0baafeec2466e": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 58,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-afa9fd51e5aac834a2381c42161c01d3bc7ca7d908f879de5645a15710fc32a0": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 59,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f21c5b2abc6bf5a3dfa18d55e5e69ab95fdfdbb6831bdcd2a21a2901c5fbe709": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 60,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-b28327867f7e0ec3ef86db5ac233e933884bfaf9eff9687cae47748ec11c1185": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 61,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-e45becabc4092913420801a2ce29cde30ccc87403960c52f864f30543aee9440": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 62,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-7497ffefc0a53d9fd508b35eab0603a053a8da4982f79e5042a2b12766955802": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 63,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-bf38a377b9680981c1531e369e50148217052a2e305e8509aab51d54e85f2b28": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 66,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-74da506b3ec871ace5984720f8e954ad33b8662e2fc92cd2245c895894649450": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 67,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-3712ad24859d4adf11abd82950ee49685c39a6b43127fad60c12b9a35ef2fb9e": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 68,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-5e4d8382d6db81877eba8b7cdd3d64e3cd7a767f1b1abab10dc7e6992698a079": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 69,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-f95c12b5bdea2193a220da40a85c5d5dcff9659bfe6dcfca8423d364650a9707": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 70,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-631739a946cae16e4332484f79b70037947a8909a6c50882e312a4bcc433315e": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 71,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-50e96238dfb1c61100508534c8bdbe23129050f41debdf1c5d963082e0becd82": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 72,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-5be38493bacd7696cc16c9f730847d89705711b2c2ac090c53169678e7b69eae": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 73,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-3a895898ddeefd14a2930186d8e0863eed6485197d0fcec99b09838c3c8a7b79": [
+      {
+        "source_id": "sportkalender_2027",
+        "source_path": "data/sportkalender_2027.tsv",
+        "source_row": 74,
+        "date_decision": "legacy_bootstrap"
+      }
+    ],
+    "event-bb44f0e2d51c8664d73211b75362819c75f37c2e5acf1cb8b14ddb85b8fa5ce8": [
+      {
+        "source_id": "bundesliga_2026_27_final_matchday",
+        "source_path": "data/catalog-seeds.json",
+        "source_kind": "official_schedule",
+        "date_decision": "verified",
+        "date_checked_at": "2026-09-25",
+        "source_url": "https://www.bundesliga.com/en/bundesliga/news/2026-27-season-fixture-lists-now-available-38068",
+        "source_hash": "07c90b70c310494c8826379db13a547e0894621219d1f4520e79474a9cba4238",
+        "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-22 through 2027-05-22.",
+        "competition_key": "bundesliga",
+        "season": "2026-27",
+        "stage": "final_matchday",
+        "confirmed_start_date": "2027-05-22",
+        "confirmed_end_date": "2027-05-22",
+        "audience_decision": "verified",
+        "audience_checked_at": "2026-09-25",
+        "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+        "coverage": "national",
+        "audience_countries": [
+          "DE"
+        ]
+      }
+    ],
+    "event-b60827f0953c7536ac93528a4f68b819204f9a3d441dd0048f3e4c423e586b79": [
+      {
+        "source_id": "frauen_bundesliga_2026_27_final_matchday",
+        "source_path": "data/catalog-seeds.json",
+        "source_kind": "official_schedule",
+        "date_decision": "verified",
+        "date_checked_at": "2026-09-25",
+        "source_url": "https://www.dfb.de/news/das-ist-der-rahmenspielplan-fuer-die-saison-2026/2027",
+        "source_hash": "5cea53762e0c77c8686b1d46df1c92b480442070dfc2b5222b03286166ac7e62",
+        "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-23 through 2027-05-23.",
+        "competition_key": "frauen_bundesliga",
+        "season": "2026-27",
+        "stage": "final_matchday",
+        "confirmed_start_date": "2027-05-23",
+        "confirmed_end_date": "2027-05-23",
+        "audience_decision": "verified",
+        "audience_checked_at": "2026-09-25",
+        "audience_statement": "Domestic German league competition, reviewed against the organizer source.",
+        "coverage": "national",
+        "audience_countries": [
+          "DE"
+        ]
+      }
+    ],
+    "event-109e7d5b672917fc87d13e16e12a146c7b13cd9f8022fbf3e3cc2bc6fe472e88": [
+      {
+        "source_id": "premier_league_2026_27",
+        "source_path": "data/catalog-seeds.json",
+        "source_kind": "official_schedule",
+        "date_decision": "verified",
+        "date_checked_at": "2026-10-01",
+        "source_url": "https://www.premierleague.com/en/news/4468487",
+        "source_hash": "b5e76b40e8597a1473c73a761600605554ddd18b44d95a366e8503d8625aae9c",
+        "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30.",
+        "competition_key": "premier_league",
+        "season": "2026-27",
+        "stage": "final_matchday",
+        "confirmed_start_date": "2027-05-30",
+        "confirmed_end_date": "2027-05-30",
+        "audience_decision": "verified",
+        "audience_checked_at": "2026-10-01",
+        "audience_statement": "Domestic top-division league for GB, reviewed against the competition owner source.",
+        "coverage": "national",
+        "audience_countries": [
+          "GB"
+        ]
+      }
+    ],
+    "event-e70128b0aace78f57f9da6cb30abba1c7b6ba047f3ef2c3b3e062885d13c45d3": [
+      {
+        "source_id": "ligue_1_2026_27",
+        "source_path": "data/catalog-seeds.json",
+        "source_kind": "official_schedule",
+        "date_decision": "verified",
+        "date_checked_at": "2026-10-01",
+        "source_url": "https://ligue1.com/fr/articles/l1_article_5284-",
+        "source_hash": "16114f0a73d9eef118159935e7dea52b37fa8a208e5fe5d4ee434b2900111923",
+        "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-29.",
+        "competition_key": "ligue_1",
+        "season": "2026-27",
+        "stage": "final_matchday",
+        "confirmed_start_date": "2027-05-29",
+        "confirmed_end_date": "2027-05-29",
+        "audience_decision": "verified",
+        "audience_checked_at": "2026-10-01",
+        "audience_statement": "Domestic top-division league for FR, reviewed against the competition owner source.",
+        "coverage": "national",
+        "audience_countries": [
+          "FR"
+        ]
+      }
+    ],
+    "event-bbfeead43d1616a1443dc3632244deb0304440f77a5134db1b18f82b5002879b": [
+      {
+        "source_id": "serie_a_2026_27_calendar",
+        "source_path": "data/catalog-seeds.json",
+        "source_kind": "official_schedule",
+        "date_decision": "verified",
+        "date_checked_at": "2026-10-01",
+        "source_url": "https://images.legaseriea.it/image/private/fl_attachment/prd/gereett2fnj7hcgsmgfi.pdf",
+        "source_hash": "4e59106d0b1275d4532d2892be9d1bff9cf8f591d9ae79c79dda3d72ff57ae2f",
+        "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30.",
+        "competition_key": "serie_a",
+        "season": "2026-27",
+        "stage": "final_matchday",
+        "confirmed_start_date": "2027-05-30",
+        "confirmed_end_date": "2027-05-30",
+        "audience_decision": "verified",
+        "audience_checked_at": "2026-10-01",
+        "audience_statement": "Domestic top-division league for IT, reviewed against the competition owner source.",
+        "coverage": "national",
+        "audience_countries": [
+          "IT"
+        ]
+      }
+    ]
+  }
+}

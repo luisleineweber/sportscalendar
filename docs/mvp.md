@@ -15,7 +15,7 @@ A simple web app where users pick from ready-made sports events and export a per
 2. Filters:
    - sport
    - competition
-   - country/region (when available)
+   - country/region for national competitions only; international events always show
 3. Event list with checkbox selection.
 4. Export selected events as `.ics`.
 5. Basic settings:
@@ -24,17 +24,14 @@ A simple web app where users pick from ready-made sports events and export a per
 
 ## Data + architecture
 
-- `core` parser/export logic stays deterministic and reusable.
-- Store curated events as versioned JSON (`data/events-<year>.json`).
-- Web frontend (Next.js) uses:
-  - static catalog for fast load
-  - client-side filtering
-  - API route or shared util for ICS generation
+- The Python CLI accepts legacy four-column and published header-based TSV files.
+- `data/catalogs.json` selects immutable yearly release TSV files.
+- Vanilla JavaScript loads the catalog, filters events, saves catalog-specific choices, and generates ICS locally.
+- A local Python refresh command validates candidate files and replaces the manifest last.
 
 ## Deployment
 
-- Preferred: Vercel (easy Next.js hosting + optional API routes).
-- Alternative: GitHub Pages only if ICS generation is fully in-browser.
+- GitHub Pages and Vercel can serve the static files. No application server is required.
 
 ## v1.1 (after launch)
 
@@ -48,3 +45,5 @@ A simple web app where users pick from ready-made sports events and export a per
 - user can export a filtered calendar in under 60 seconds
 - exported ICS is deterministic for same inputs
 - at least 3 curated sports categories available at launch
+
+The current catalogs are previews. The five-country coverage and source-verification requirements are recorded in `national-catalog-plan.md`.
