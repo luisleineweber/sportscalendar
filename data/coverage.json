@@ -1,0 +1,838 @@
+{
+  "schema_version": 2,
+  "goals": [
+    {
+      "country": "DE",
+      "sport_key": "football"
+    },
+    {
+      "country": "DE",
+      "sport_key": "basketball"
+    },
+    {
+      "country": "DE",
+      "sport_key": "athletics"
+    },
+    {
+      "country": "DE",
+      "sport_key": "other_national"
+    },
+    {
+      "country": "US",
+      "sport_key": "football"
+    },
+    {
+      "country": "US",
+      "sport_key": "basketball"
+    },
+    {
+      "country": "US",
+      "sport_key": "athletics"
+    },
+    {
+      "country": "US",
+      "sport_key": "other_national"
+    },
+    {
+      "country": "GB",
+      "sport_key": "football"
+    },
+    {
+      "country": "GB",
+      "sport_key": "basketball"
+    },
+    {
+      "country": "GB",
+      "sport_key": "athletics"
+    },
+    {
+      "country": "GB",
+      "sport_key": "other_national"
+    },
+    {
+      "country": "FR",
+      "sport_key": "football"
+    },
+    {
+      "country": "FR",
+      "sport_key": "basketball"
+    },
+    {
+      "country": "FR",
+      "sport_key": "athletics"
+    },
+    {
+      "country": "FR",
+      "sport_key": "other_national"
+    },
+    {
+      "country": "IT",
+      "sport_key": "football"
+    },
+    {
+      "country": "IT",
+      "sport_key": "basketball"
+    },
+    {
+      "country": "IT",
+      "sport_key": "athletics"
+    },
+    {
+      "country": "IT",
+      "sport_key": "other_national"
+    }
+  ],
+  "highlights": [
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "american_football",
+      "competition_key": "nfl",
+      "season": "2026",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "mixed",
+      "required": true,
+      "expected_start_date": "2026-09-09",
+      "expected_end_date": "2026-09-09",
+      "source_ids": [
+        "nfl_2026_kickoff_game"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026 on 2026-09-09 through 2026-09-09."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "bundesliga",
+      "season": "2026-27",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2026-08-28",
+      "expected_end_date": "2026-08-28",
+      "source_ids": [
+        "bundesliga_2026_27_opener"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026-27 on 2026-08-28 through 2026-08-28."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "bundesliga",
+      "season": "2026-27",
+      "stage": "final_matchday",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2027-05-22",
+      "expected_end_date": "2027-05-22",
+      "source_ids": [
+        "bundesliga_2026_27_final_matchday"
+      ],
+      "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-22 through 2027-05-22."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "frauen_bundesliga",
+      "season": "2026-27",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "female",
+      "required": true,
+      "expected_start_date": "2026-08-21",
+      "expected_end_date": "2026-08-21",
+      "source_ids": [
+        "frauen_bundesliga_2026_27_opener"
+      ],
+      "date_statement": "The official schedule confirms season_opener for 2026-27 on 2026-08-21 through 2026-08-21."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "frauen_bundesliga",
+      "season": "2026-27",
+      "stage": "final_matchday",
+      "event_kind": "season",
+      "gender": "female",
+      "required": true,
+      "expected_start_date": "2027-05-23",
+      "expected_end_date": "2027-05-23",
+      "source_ids": [
+        "frauen_bundesliga_2026_27_final_matchday"
+      ],
+      "date_statement": "The official schedule confirms final_matchday for 2026-27 on 2027-05-23 through 2027-05-23."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "premier_league",
+      "season": "2026-27",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2026-08-21",
+      "expected_end_date": "2026-08-21",
+      "source_ids": [
+        "premier_league_2026_27"
+      ],
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-21."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "premier_league",
+      "season": "2026-27",
+      "stage": "final_matchday",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2027-05-30",
+      "expected_end_date": "2027-05-30",
+      "source_ids": [
+        "premier_league_2026_27"
+      ],
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "FR",
+      "sport_key": "football",
+      "competition_key": "ligue_1",
+      "season": "2026-27",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2026-08-21",
+      "expected_end_date": "2026-08-21",
+      "source_ids": [
+        "ligue_1_2026_27"
+      ],
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-21."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "FR",
+      "sport_key": "football",
+      "competition_key": "ligue_1",
+      "season": "2026-27",
+      "stage": "final_matchday",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2027-05-29",
+      "expected_end_date": "2027-05-29",
+      "source_ids": [
+        "ligue_1_2026_27"
+      ],
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-29."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "IT",
+      "sport_key": "football",
+      "competition_key": "serie_a",
+      "season": "2026-27",
+      "stage": "season_opener",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2026-08-22",
+      "expected_end_date": "2026-08-22",
+      "source_ids": [
+        "serie_a_2026_27_opener"
+      ],
+      "date_statement": "The organizer confirms the season_opener date for 2026/27 as 2026-08-22."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "IT",
+      "sport_key": "football",
+      "competition_key": "serie_a",
+      "season": "2026-27",
+      "stage": "final_matchday",
+      "event_kind": "season",
+      "gender": "male",
+      "required": true,
+      "expected_start_date": "2027-05-30",
+      "expected_end_date": "2027-05-30",
+      "source_ids": [
+        "serie_a_2026_27_calendar"
+      ],
+      "date_statement": "The organizer confirms the final_matchday date for 2026/27 as 2027-05-30."
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "american_football",
+      "competition_key": "nfl",
+      "season": "2026",
+      "stage": "playoff_final",
+      "event_kind": "season",
+      "gender": "mixed",
+      "required": true,
+      "expected_start_date": null,
+      "expected_end_date": null,
+      "source_ids": [],
+      "note": "Super Bowl LXI needs a reviewed official date record."
+    },
+    {
+      "catalog_year": 2026,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "dfb_pokal",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "DE",
+      "sport_key": "football",
+      "competition_key": "dfb_pokal",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "DE",
+      "sport_key": "athletics",
+      "competition_key": "german_athletics_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "DE",
+      "sport_key": "athletics",
+      "competition_key": "german_athletics_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "DE",
+      "sport_key": "swimming",
+      "competition_key": "german_swimming_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "DE",
+      "sport_key": "swimming",
+      "competition_key": "german_swimming_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "basketball",
+      "competition_key": "nba",
+      "season": "2025-26",
+      "stage": "playoff_final",
+      "event_kind": "season",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "",
+      "gender": "mixed"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "basketball",
+      "competition_key": "nba",
+      "season": "2026-27",
+      "stage": "playoff_final",
+      "event_kind": "season",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "",
+      "gender": "mixed"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "baseball",
+      "competition_key": "mlb",
+      "season": "2026",
+      "stage": "playoff_final",
+      "event_kind": "season",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "",
+      "gender": "mixed"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "baseball",
+      "competition_key": "mlb",
+      "season": "2027",
+      "stage": "playoff_final",
+      "event_kind": "season",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "",
+      "gender": "mixed"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "football",
+      "competition_key": "us_open_cup",
+      "season": "2026",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "football",
+      "competition_key": "us_open_cup",
+      "season": "2027",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "cycling",
+      "competition_key": "usa_cycling_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "cycling",
+      "competition_key": "usa_cycling_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "swimming",
+      "competition_key": "usa_swimming_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "swimming",
+      "competition_key": "usa_swimming_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "fa_cup",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "ENG"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "fa_cup",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "ENG"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "scottish_cup",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "SCO"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "scottish_cup",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "SCO"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "welsh_cup",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "WAL"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "welsh_cup",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "WAL"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "irish_cup",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "NIR"
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "football",
+      "competition_key": "irish_cup",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": "NIR"
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "athletics",
+      "competition_key": "uk_athletics_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "athletics",
+      "competition_key": "uk_athletics_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "GB",
+      "sport_key": "swimming",
+      "competition_key": "aquatics_gb_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "GB",
+      "sport_key": "swimming",
+      "competition_key": "aquatics_gb_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "FR",
+      "sport_key": "football",
+      "competition_key": "coupe_de_france",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "FR",
+      "sport_key": "football",
+      "competition_key": "coupe_de_france",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "FR",
+      "sport_key": "athletics",
+      "competition_key": "french_athletics_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "FR",
+      "sport_key": "athletics",
+      "competition_key": "french_athletics_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "FR",
+      "sport_key": "swimming",
+      "competition_key": "french_swimming_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "FR",
+      "sport_key": "swimming",
+      "competition_key": "french_swimming_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "IT",
+      "sport_key": "football",
+      "competition_key": "coppa_italia",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "IT",
+      "sport_key": "football",
+      "competition_key": "coppa_italia",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "IT",
+      "sport_key": "athletics",
+      "competition_key": "italian_athletics_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "IT",
+      "sport_key": "athletics",
+      "competition_key": "italian_athletics_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "IT",
+      "sport_key": "swimming",
+      "competition_key": "italian_swimming_championships",
+      "season": "2026",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "IT",
+      "sport_key": "swimming",
+      "competition_key": "italian_swimming_championships",
+      "season": "2027",
+      "stage": "championship",
+      "event_kind": "national_championship",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "International",
+      "sport_key": "football",
+      "competition_key": "uefa_champions_league",
+      "season": "2025-26",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2027,
+      "country": "International",
+      "sport_key": "football",
+      "competition_key": "uefa_champions_league",
+      "season": "2026-27",
+      "stage": "final",
+      "event_kind": "cup_final",
+      "required": false,
+      "source_ids": [],
+      "uk_home_nation": ""
+    },
+    {
+      "catalog_year": 2026,
+      "country": "US",
+      "sport_key": "baseball",
+      "competition_key": "mlb",
+      "season": "2026",
+      "stage": "all_star",
+      "event_kind": "season",
+      "gender": "mixed",
+      "required": false,
+      "source_ids": []
+    },
+    {
+      "catalog_year": 2027,
+      "country": "US",
+      "sport_key": "baseball",
+      "competition_key": "mlb",
+      "season": "2027",
+      "stage": "all_star",
+      "event_kind": "season",
+      "gender": "mixed",
+      "required": false,
+      "source_ids": []
+    },
+    {
+      "catalog_year": 2026,
+      "country": "International",
+      "sport_key": "football",
+      "competition_key": "catalog_football",
+      "season": "2026",
+      "stage": "football:2026 fifa world cup",
+      "event_kind": "tournament",
+      "gender": "mixed",
+      "required": false,
+      "source_ids": [
+        "fifa_world_cup_2026"
+      ],
+      "expected_start_date": "2026-06-11",
+      "expected_end_date": "2026-07-19",
+      "date_statement": "FIFA confirms the complete tournament date window."
+    }
+  ]
+}

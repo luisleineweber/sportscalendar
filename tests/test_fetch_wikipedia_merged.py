@@ -4,7 +4,7 @@ import unittest
 
 import pandas as pd
 
-from scripts.fetch_wikipedia_merged import deduplicate_final_rows, normalize_english_date
+from scripts.fetch_wikipedia_merged import deduplicate_final_rows, normalize_english_date, normalize_german_date
 
 
 class NormalizeEnglishDateTests(unittest.TestCase):
@@ -28,6 +28,44 @@ class NormalizeEnglishDateTests(unittest.TestCase):
         self.assertIsNone(normalized)
         self.assertIsNone(start)
         self.assertIsNone(end)
+
+    def test_resolves_contextual_cross_year_nfl_range(self) -> None:
+        normalized, start, end = normalize_english_date("9–10 January", year=2026, context_month=9)
+
+        self.assertEqual(normalized, "9.9.2026 - 10.1.2027")
+        self.assertEqual(start, "2026-09-09")
+        self.assertEqual(end, "2027-01-10")
+
+    def test_preserves_explicit_end_year(self) -> None:
+        normalized, start, end = normalize_english_date("8–5 June 2027", year=2026, context_month=9)
+
+        self.assertEqual(normalized, "8.9.2026 - 5.6.2027")
+        self.assertEqual(start, "2026-09-08")
+        self.assertEqual(end, "2027-06-05")
+
+
+class NormalizeGermanDateTests(unittest.TestCase):
+    def test_parses_named_months_and_context_year(self) -> None:
+        normalized, start, end = normalize_german_date(
+            "19. Sep. – 4. Okt.",
+            year=2026,
+            context_month=9,
+        )
+
+        self.assertEqual(normalized, "19.9.2026 - 4.10.2026")
+        self.assertEqual(start, "2026-09-19")
+        self.assertEqual(end, "2026-10-04")
+
+    def test_parses_numeric_dates_after_named_month_support(self) -> None:
+        normalized, start, end = normalize_german_date(
+            "1.1.2026 - 2.1.2026",
+            year=2026,
+            context_month=1,
+        )
+
+        self.assertEqual(normalized, "1.1.2026 - 2.1.2026")
+        self.assertEqual(start, "2026-01-01")
+        self.assertEqual(end, "2026-01-02")
 
 
 class DeduplicateFinalRowsTests(unittest.TestCase):

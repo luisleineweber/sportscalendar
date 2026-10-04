@@ -19,9 +19,29 @@ py -m http.server 8000
 
 Then open `http://localhost:8000/web/`.
 
-The current web app reads the 2026 event catalog from `data/sportkalender_2026.tsv`. When a new yearly catalog is generated, update `DATA_URL` in `web/app.js` to point to that TSV path.
+The web app reads `data/catalogs.json`. The manifest lists available years and points to immutable release TSV files. The default is 2026; 2027 remains a preview. Selection is saved for each catalog year. Exported ICS files are one-time downloads and do not update after a catalog refresh.
 
 For a current-year TSV, the export dock offers `From today`; this keeps events that are active today or later and excludes events that have already ended. Future-year catalogs offer `Full year` only.
+
+### Catalog refresh
+
+Install the project, then validate the current release:
+
+```bash
+python -m pip install -e .
+python scripts/validate_catalog.py --manifest data/catalogs.json
+```
+
+To publish reviewed, header-based local candidate files for both years:
+
+```bash
+python scripts/refresh_catalogs.py --years 2026 2027 --input 2026=data/catalog-candidates/catalog_2026.tsv --input 2027=data/catalog-candidates/catalog_2027.tsv --preview-years 2026 2027 --dry-run
+python scripts/refresh_catalogs.py --years 2026 2027 --input 2026=data/catalog-candidates/catalog_2026.tsv --input 2027=data/catalog-candidates/catalog_2027.tsv --preview-years 2026 2027
+```
+
+The monthly command fetches configured sources when no explicit input files are supplied. It starts from the active year files and replaces the local manifest last. Explicit candidates fetch sources only with `--fetch-sources`. Use `--offline` for saved responses and `--report .cache/catalog-report.json` for the review report. The command does not commit, push, or deploy. Four-column candidates need reviewed metadata sidecars with `--enrichment YEAR=PATH`.
+
+`data/coverage.json` separates goals, required highlights, and optional events. Only pending required highlights block its coverage gate. Included events also need reviewed audience scope before Ready. See [the catalog process](docs/catalog-process.md) for source records, review checks, and the monthly commands.
 
 ### Deploy options
 
@@ -93,7 +113,7 @@ Outputs:
 
 Notes:
 
-- Only the final TSV is intended as input for the CLI/web import flow.
+- The final TSV remains valid CLI input. The web app uses the published catalog files listed in the manifest.
 - The debug TSV keeps raw source values, validation state, and exact-duplicate flags.
 - Exact normalized DE/EN collisions are deduplicated conservatively, preferring `de`.
 

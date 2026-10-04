@@ -16,6 +16,8 @@ output/
 
 # Node
 node_modules/
+.playwright-cli/
+.cache/
 
 # Local editor/system files
 .DS_Store

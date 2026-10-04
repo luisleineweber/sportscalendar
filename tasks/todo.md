@@ -1,5 +1,23 @@
 # Selection + Mobile Export Improvements
 
+## Active plan: Five-country catalog and monthly refresh
+
+- Plan: [Five-country sport catalog](../docs/national-catalog-plan.md).
+- Sources: [USA and UK](../docs/sources-us-uk.md), [Germany, France, Italy](../docs/sources-de-fr-it.md).
+- Confirmed scope: shared major events plus national league seasons, cup finals, and senior championships for DE, US, UK, FR, IT. No full match schedules.
+- Revised UI: preserve Sports / Events / export dock. Sport remains the main order. Use one global country filter, sport-only controls, and individual event choices.
+- Show measured per-year, sport and league availability, with source gaps. Check every year, adjacent seasons, shared IDs and atomic multi-year releases.
+- [x] Check the current catalog faults and existing tests.
+- [x] Research official sources and record import limits.
+- [x] Write the implementation order and pass conditions.
+- [x] Implement the data validator and date-parser repair first.
+- [x] Add country coverage, stable IDs, and canonical sports.
+- [x] Add the monthly refresh command and catalog manifest.
+- [x] Add year controls, the global country filter, event actions, and catalog-scoped storage.
+- [x] Align ICS output, add CI, and update product documentation.
+
+The TheSportsDB importer slice below is deferred and superseded by this plan. Its unchecked tasks are not part of the active v1 scope. The local Preview catalogs now use the implemented checks. Audience reviews and the 2027 NFL closing date remain data gaps. See [the catalog process](../docs/catalog-process.md).
+
 ## Slice: Release auf den 2026-Katalog umstellen
 
 ### Ergebnis
