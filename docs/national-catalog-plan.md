@@ -8,7 +8,7 @@ Status: confirmed rules implemented on 2026-10-01. The catalogs remain Preview b
 - The checker uses stable event identity, actual season, stage, date overlap, registered official sources, and proof of the full date range.
 - The monthly command checks sources, uses saved response hashes, reports changes and gaps, and replaces the manifest only after reference checks. It keeps the active batch on failure.
 - Premier League and Ligue 1 have tested HTML adapters. German, US, Italian, and FIFA event records use reviewed evidence. Wikipedia remains a discovery source.
-- The browser shows country, International, and Unresolved audience scope labels. It shows links only for reviewed date evidence. Country and sport filters keep event choices.
+- The browser shows short event titles without edition years or season labels. Dates, places, competition names, and known audience labels remain visible. Source links and audience review notes stay in the catalog report. Country and sport filters keep event choices.
 - The acceptance tests cover separate cross-year highlights, optional gaps, source authority, audience scope, full final ranges, source failures, and release crashes.
 
 The older checkpoints below describe the state before this implementation. Event counts and current gaps are in [the manifest](../data/catalogs.json).
@@ -17,7 +17,7 @@ Completion checks on 2026-10-01: 70 Python tests and 35 Node tests pass. Every a
 
 ## Product scope
 
-Keep the existing Sports, Events, and export panels. Use one multi-select country filter above Sports for Germany, the USA, the UK, France, and Italy. Do not repeat country choices inside sport groups. The Sports panel selects sports only. Keep individual event choices and per-sport event actions in Events. Show competition and season names only as context on event rows. Country filters affect national events only. Verified international events remain eligible for every country selection. Events with unresolved audience scope remain in Preview until classified.
+Keep the existing Sports, Events, and export panels. Use one multi-select country filter above Sports for Germany, the USA, the UK, France, and Italy. Do not repeat country choices inside sport groups. The Sports panel selects sports only. Keep individual event choices and per-sport event actions in Events. Show competition names as context on event rows. Omit edition years and season labels from displayed titles. Keep source and review notes in the catalog report. Country filters affect national events only. Verified international events remain eligible for every country selection. Events with unresolved audience scope remain in Preview until classified.
 
 Country selection is global. It filters visible events and export eligibility. Changing countries does not change sport choices or event selections. The event list stays grouped by sport, with dates sorted inside each sport.
 
@@ -79,14 +79,14 @@ Open the existing product
 ├─ Events panel: show eligible events grouped by sport and date
 │  ├─ Keep Select visible / Clear visible / Invert visible / Selected only
 │  ├─ Keep individual event checkboxes, search, and per-sport event actions
-│  └─ Show competition, season, date, reviewed source, and known place as event context
+│  └─ Show competition, date, and known place as event context
 └─ Existing export dock
    ├─ Count selected events and sports
    ├─ Full year / From today; compact Export options
    └─ Download or share an all-day ICS snapshot
 ```
 
-First visit keeps all countries, sports, and events selected. Country filters apply only to national events and use audience-country tags. Any selected assigned country is sufficient. Verified international events remain eligible for every country selection. If unresolved events remain available in Preview, call their scope "Unresolved audience scope"; do not present them as international or use "not tagged" as the user-facing class. Exclude them from `Ready`. Sport controls filter event visibility; event rows are the only event-selection controls. League seasons use separate dated openers, closing highlights, and optional extras. Keep each multi-day event at its actual full dates. The coverage report shows gaps by country and sport without disabling sport controls.
+First visit keeps all countries, sports, and events selected. Country filters apply only to national events and use audience-country tags. Any selected assigned country is sufficient. Verified international events remain eligible for every country selection. If unresolved events remain available in Preview, keep their scope in the review report. Do not present them as international. Exclude them from `Ready`. Sport controls filter event visibility; event rows are the only event-selection controls. League seasons use separate dated openers, closing highlights, and optional extras. Keep each multi-day event at its actual full dates. The coverage report shows gaps by country and sport without disabling sport controls.
 
 Keep one event selection set as the source of truth. Event checkboxes add or remove individual event IDs. Per-sport actions in Events operate only on visible events for that sport. Country and sport changes filter eligibility; they never edit selected IDs. Country filters do not use venue location or shared audience tags. Shared and international events appear once, regardless of selected countries. NFL belongs to American Football; UEFA Champions League belongs to Football.
 
@@ -94,7 +94,7 @@ The sport and country controls are eligibility filters and preserve manual event
 
 For classified events, country eligibility = verified international OR (national AND any audience country is selected). Visible events = active catalog AND enabled sports AND country eligibility AND search AND optional Selected only. Export events = unique selected IDs AND active catalog AND enabled sports AND country eligibility AND export date range. Unresolved events are a separate Preview review case and never receive international scope by default. Render event groups in the taxonomy's sport order; sort dates within each group. The ICS file retains its separately specified deterministic date order. Label counts as available, selected, and visible.
 
-Use native labelled controls, visible keyboard focus, and a stable status region for counts and load errors. Keep the export action usable at 320 px width and at 200% zoom. Do not show release status, update timestamps, or unverified source summaries above the event list. Show a source only when the event has reviewed evidence.
+Use native labelled controls, visible keyboard focus, and a stable status region for counts and load errors. Keep the export action usable at 320 px width and at 200% zoom. Do not show release status, update timestamps, or unverified source summaries above the event list. Keep source evidence in the catalog report; do not add source links to event rows.
 
 The exported ICS file is a snapshot. A later catalog update does not change an ICS file already imported into a calendar app.
 
@@ -331,7 +331,7 @@ These changes now run in the existing catalog process. The table retains the agr
 | 2 | Update `build_coverage_report` in `sportkalender/catalog_coverage.py` and `verified_date_records` in `sportkalender/catalog_evidence.py`, plus the source registry and event evidence. Match identity, season, stage, date overlap, and official date confirmation. | A different stage, season, or secondary-only source cannot satisfy a requirement. Missing required records remain pending. |
 | 3 | Review league rows and audience classifications through `sportkalender/catalog_enrichment.py` and `sportkalender/catalog_validation.py`. Retain IDs for valid highlights and evidence for dates and scope. | A Final Four/Final Six is one dated event. Every included Ready event has verified national or international scope; unresolved candidates remain available for Preview review. |
 | 4 | Update the report and Ready decision in `scripts/refresh_catalogs.py`. Count only pending required highlights as coverage blockers; apply the other release checks separately. | Optional extras and goal gaps do not block the coverage gate. Required failures and unresolved included scope do. Dry runs explain each blocker before manifest replacement. |
-| 5 | Use clear country, International, and Unresolved audience scope labels in `web/app.js`; retain the existing any-country match in `web/app-state.mjs`. Add the acceptance cases to `tests/test_catalog_coverage.py`, `tests/test_catalog_refresh.py`, `tests/test_catalog_validation.py`, and relevant browser checks. | The report and UI use the agreed terms. Yearly coverage, official evidence, optional gaps, multi-day finals, and audience filtering pass the specified checks. |
+| 5 | Use short titles and known country or International labels in `web/app.js`. Keep source and unresolved audience details in the report; retain the existing any-country match in `web/app-state.mjs`. Add the acceptance cases to `tests/test_catalog_coverage.py`, `tests/test_catalog_refresh.py`, `tests/test_catalog_validation.py`, and relevant browser checks. | The report and UI use the agreed terms. Yearly coverage, official evidence, optional gaps, multi-day finals, and audience filtering pass the specified checks. |
 
 The implementation and acceptance tests now enforce these rules. Source discovery and audience review continue through the report.
 

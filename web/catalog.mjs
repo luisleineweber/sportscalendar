@@ -361,14 +361,6 @@ export async function loadCatalog({ manifest, catalogId, fetchImpl = globalThis.
         ...event,
         coverage: scopeVerified ? event.coverage : "not_tagged",
         audienceCountries: scopeVerified ? event.audienceCountries : [],
-        sourceEvidence: [...new Set(records
-          .filter((item) => item?.date_decision === "verified" && item.date_checked_at && item.date_statement
-            && /^https?:\/\//.test(item.source_url ?? "") && item.source_current !== false
-            && item.competition_key === event.competitionKey && item.season === event.season
-            && item.stage === event.stage && item.confirmed_start_date === event.startDate
-            && Number.isFinite(Date.parse(item.confirmed_end_date))
-            && toIsoDate(new Date(Date.parse(item.confirmed_end_date) + 86400000)) === event.endDateExclusive)
-          .map((item) => item.source_url))],
       };
     });
   }
@@ -506,7 +498,6 @@ export function parseCatalogRow(row, { catalogYear = null, manifest = {} } = {})
     hostCountries: parseList(readField(row, "host_countries")),
     eventKind: readField(row, "event_kind") || inferEventKind(title),
     displayGroupKey,
-    sourceEvidence: parseList(readField(row, "source_ids") || readField(row, "source_urls")),
   };
 
   return { event, reason: null };
@@ -699,12 +690,20 @@ export function resolveDisplayGroupKey({ coverage, audienceCountries, competitio
   return audienceCountries[0] ? `country:${audienceCountries[0]}` : "unassigned";
 }
 
+export function getEventDisplayTitle(title) {
+  return title
+    .replace(/\b(?:19|20)\d{2}(?:\s*[-\u2013\u2014/]\s*(?:\d{4}|\d{2}))?\b/g, "")
+    .replace(/\(\s*\)|\[\s*\]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/^[\s\-\u2013\u2014/]+|[\s\-\u2013\u2014/]+$/g, "");
+}
+
 export function getAudienceScopeLabel(event) {
   if (event.coverage === "shared_major") return "International";
   if (event.coverage === "national" && event.audienceCountries?.length) {
     return event.audienceCountries.map((country) => COUNTRY_LABELS[country] ?? country).join(", ");
   }
-  return "Unresolved audience scope";
+  return "";
 }
 
 function readField(row, field) {

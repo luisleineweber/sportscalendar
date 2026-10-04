@@ -697,16 +697,6 @@ select {
   min-width: 0;
 }
 
-.event-source {
-  color: var(--text-secondary);
-  text-underline-offset: 3px;
-}
-
-.event-source:focus-visible {
-  outline: 2px solid var(--text);
-  outline-offset: 3px;
-}
-
 .event-date {
   color: var(--text);
   font-family: "DM Mono", monospace;

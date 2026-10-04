@@ -12,6 +12,7 @@ import {
   parseCatalogTsvWithDiagnostics,
   parseDateRange,
   getAudienceScopeLabel,
+  getEventDisplayTitle,
 } from "./catalog.mjs";
 
 function response(body, status = 200) {
@@ -192,7 +193,7 @@ test("published catalog loading rejects rows with missing IDs", async () => {
   }), /published row checks/);
 });
 
-test("published catalog loading attaches its event evidence", async () => {
+test("published catalog loading uses evidence to classify audience scope", async () => {
   const eventId = `event-${"a".repeat(64)}`;
   const manifest = {
     default: "2026",
@@ -204,14 +205,28 @@ test("published catalog loading attaches its event evidence", async () => {
       ? response(`event_id\tdate\ttitle\tsport\n${eventId}\t01.01.2026\tOpening\tFootball\n`)
       : response(JSON.stringify({ event_evidence: { [eventId]: [{ source_id: "official-schedule" }] } })),
   });
-  assert.deepEqual(catalog.events[0].sourceEvidence, []);
   assert.equal(catalog.events[0].coverage, "not_tagged");
 });
 
-test("scope labels keep unresolved rows separate from international events", () => {
-  assert.equal(getAudienceScopeLabel({ coverage: "not_tagged" }), "Unresolved audience scope");
+test("audience labels show only known scope", () => {
+  assert.equal(getAudienceScopeLabel({ coverage: "not_tagged" }), "");
   assert.equal(getAudienceScopeLabel({ coverage: "shared_major" }), "International");
   assert.equal(getAudienceScopeLabel({ coverage: "national", audienceCountries: ["DE", "FR"] }), "Germany, France");
+});
+
+test("display titles omit years and seasons but keep event numbers", () => {
+  for (const [title, expected] of [
+    ["2026 NBA All-Star Game", "NBA All-Star Game"],
+    ["2026/27 Bundesliga opener", "Bundesliga opener"],
+    ["2025\u201326 EHF Champions League Final Four", "EHF Champions League Final Four"],
+    ["EuroBasket Women 2027", "EuroBasket Women"],
+    ["Candidates Tournament 2026 Women's Candidates Tournament 2026", "Candidates Tournament Women's Candidates Tournament"],
+    ["World Championship (2026)", "World Championship"],
+    ["2026 Dakar Rally (WRRC #1)", "Dakar Rally (WRRC #1)"],
+    ["Formula 1 - 24 Hours - Men's U20 2000m", "Formula 1 - 24 Hours - Men's U20 2000m"],
+  ]) {
+    assert.equal(getEventDisplayTitle(title), expected);
+  }
 });
 
 const reviewedEventId = `event-${"b".repeat(64)}`;
@@ -236,19 +251,13 @@ function loadReviewedEvent(record = reviewedEventEvidence, status = "ready") {
   });
 }
 
-test("reviewed national scope and exact source dates remain visible", async () => {
+test("reviewed national scope remains available for country filters", async () => {
   const { events } = await loadReviewedEvent();
   assert.equal(events[0].coverage, "national");
   assert.deepEqual(events[0].audienceCountries, ["GB"]);
-  assert.deepEqual(events[0].sourceEvidence, ["https://example.test/schedule"]);
 });
 
-test("source links require the current event dates", async () => {
-  const { events } = await loadReviewedEvent({ ...reviewedEventEvidence, confirmed_start_date: "2026-08-22" });
-  assert.deepEqual(events[0].sourceEvidence, []);
-});
-
-test("Ready rejects unresolved audience scope and Preview labels it", async () => {
+test("Ready rejects unresolved audience scope and Preview retains it for review", async () => {
   const record = { ...reviewedEventEvidence, audience_decision: "pending_review" };
   await assert.rejects(() => loadReviewedEvent(record), /unresolved audience scope/);
   const { events } = await loadReviewedEvent(record, "preview");

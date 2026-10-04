@@ -23,8 +23,8 @@ Do not replace the existing Sports panel, Events panel, and export dock with a c
 ## Design Principles
 
 - Keep sport as the main filter and event-list order.
-- Keep event choices in the Events panel. Use competition and season names only as event context.
-- Filter national events by selected country. Verified international events remain eligible. Show unresolved audience scope as a separate Preview review class.
+- Keep event choices in the Events panel. Show short event titles without edition years or season labels. Keep dates, known places, and competition names as context.
+- Filter national events by selected country. Verified international events remain eligible. Keep source links and unresolved audience review notes in the catalog report.
 - Represent league seasons with dated openers, finals, and other highlights. Do not add one event for the full season.
 - Preserve event choices when country or sport filters change.
 - Show actual row counts and data gaps separately from planned coverage.

@@ -22,7 +22,8 @@ import {
   loadCatalog,
   loadCatalogManifest,
   getAudienceScopeLabel,
-} from "./catalog.mjs?v=20261001a";
+  getEventDisplayTitle,
+} from "./catalog.mjs?v=20261002a";
 import { buildEventSummary, createIcs } from "./ics.mjs";
 
 const EXPORT_FILE_NAME = "sportkalender-selection.ics";
@@ -412,6 +413,7 @@ function applyFilters() {
         return true;
       }
       const text = [
+        getEventDisplayTitle(event.title),
         event.title,
         event.sportLabel,
         event.location,
@@ -535,14 +537,13 @@ function renderEvents() {
     checkbox.checked = state.selectedEventIds.has(event.id);
     const summary = document.createElement("div");
     summary.className = "event-summary";
-    summary.textContent = buildEventSummary(event, state.titleFormat);
+    summary.textContent = buildEventSummary({ ...event, title: getEventDisplayTitle(event.title) }, state.titleFormat);
     const meta = document.createElement("div");
     meta.className = "event-meta";
     const metaItems = [
       { label: formatDateRange(event.startDate, event.endDateExclusive), className: "event-date" },
       { label: event.location },
       { label: event.competitionKey !== "unassigned" && !event.competitionKey.startsWith("catalog_") ? event.competitionLabel : "" },
-      { label: event.season },
       { label: getAudienceScopeLabel(event) },
     ].filter((item) => item.label);
     for (const item of metaItems) {
@@ -550,16 +551,6 @@ function renderEvents() {
       metaItem.className = `event-meta-item ${item.className ?? ""}`.trim();
       metaItem.textContent = item.label;
       meta.append(metaItem);
-    }
-    for (const sourceUrl of event.sourceEvidence ?? []) {
-      const link = document.createElement("a");
-      link.className = "event-meta-item event-source";
-      link.href = sourceUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Reviewed source";
-      link.setAttribute("aria-label", `Reviewed source for ${event.title}`);
-      meta.append(link);
     }
     const content = document.createElement("div");
     content.className = "event-content";
